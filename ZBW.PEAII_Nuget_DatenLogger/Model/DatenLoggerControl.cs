@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Data;
+using Google.Protobuf;
 using MySql.Data.MySqlClient;
+using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model
 {
     internal class DatenLoggerControl
     {
+
         public void ConnectionState(string servername, string database, string username, string passwort)
         {
            // private string Connectionstring => $"Servername={this.txtServer.Text};Database={this.txtDatabase.Text};Uid={this.txtUid.Text};Pwd={this.txtPwd.Text}";
-            var connStr = "Server="+servername +";Database="+ database + ";Uid=" + username + ";Pwd=" + passwort;//"Server=localhost;Database=sqlteacherdb;Uid=root;Pwd=";
-            using (IDbConnection conn = new MySqlConnection(connStr)) //In diesem Befehl kann die Datenbankanbidnung gewählt werden.
+            //var connStr = "Server="+servername +";Database="+ database + ";Uid=" + username + ";Pwd=" + passwort;//"Server=localhost;Database=sqlteacherdb;Uid=root;Pwd=";
+
+            using (IDbConnection conn = new MySqlConnection(Settings.Default.Connectionstring)) //In diesem Befehl kann die Datenbankanbidnung gewählt werden.
             {
                 try
                 {

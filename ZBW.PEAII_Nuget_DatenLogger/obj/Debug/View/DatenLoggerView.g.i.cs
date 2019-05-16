@@ -41,7 +41,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.View {
     public partial class DatenLoggerView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 51 "..\..\..\View\DatenLoggerView.xaml"
+        #line 52 "..\..\..\View\DatenLoggerView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ListView LogEntriesGrid;
         
@@ -49,7 +49,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.View {
         #line hidden
         
         
-        #line 62 "..\..\..\View\DatenLoggerView.xaml"
+        #line 63 "..\..\..\View\DatenLoggerView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.GridView logEntryGrid;
         

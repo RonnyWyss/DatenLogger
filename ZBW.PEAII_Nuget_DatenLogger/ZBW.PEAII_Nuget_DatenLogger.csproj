@@ -87,6 +87,7 @@
     <Compile Include="Model\DataAccess.cs" />
     <Compile Include="Model\DatenLoggerControl.cs" />
     <Compile Include="Model\LogEntry.cs" />
+    <Compile Include="ViewModel\DatenLoggerAddViewModel.cs" />
     <Compile Include="ViewModel\DatenLoggerViewModel.cs" />
     <Compile Include="View\DatenLoggerAdd.xaml.cs">
       <DependentUpon>DatenLoggerAdd.xaml</DependentUpon>

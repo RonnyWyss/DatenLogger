@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Windows;
+using Google.Protobuf;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
+using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class DatenLoggerViewModel : BindableBase
     {
-        private string _Servername;
-        private string _Database;
-        private string _Username;
-        private string _Passwort;
+        private string _servername;
+        private string _database;
+        private string _username;
+        private string _passwort;
         private DatenLoggerControl DLC = new DatenLoggerControl();
 
         public DatenLoggerViewModel()
@@ -23,27 +25,27 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         public string Servername
         {
-            get => _Servername;
+            get => _servername;
 
-            set => SetProperty(ref _Servername, value);
+            set => SetProperty(ref _servername, value);
         }
         public string Database
         {
-            get => _Database;
+            get => _database;
 
-            set => SetProperty(ref _Database, value);
+            set => SetProperty(ref _database, value);
         }
         public string Username
         {
-            get => _Username;
+            get => _username;
 
-            set => SetProperty(ref _Username, value);
+            set => SetProperty(ref _username, value);
         }
         public string Passwort
         {
-            get => _Passwort;
+            get => _passwort;
 
-            set => SetProperty(ref _Passwort, value);
+            set => SetProperty(ref _passwort, value);
         }
 
 
@@ -53,21 +55,22 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdLoad()
         {
-            if (_Servername == null)
+            if (_servername == null)
             {
                 MessageBox.Show("Geben Sie den Servername ein (Default: 'localhost')");
             }
-            else if (_Database == null)
+            else if (_database == null)
             {
                 MessageBox.Show("Geben Sie den Datenbankname ein (Default: 'sqltechdb')");
             }
-            else if (_Username == null)
+            else if (_username == null)
             {
                 MessageBox.Show("Geben Sie einen Benutzername ein (Default: 'root')");
             }
             else
             {
-               DLC.ConnectionState(_Servername,_Database,_Username,_Passwort);
+              Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
+                DLC.ConnectionState(_servername,_database,_username,_passwort);
             }
 
         }
