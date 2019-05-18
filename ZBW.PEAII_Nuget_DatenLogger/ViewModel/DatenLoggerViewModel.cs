@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Google.Protobuf.WellKnownTypes;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
@@ -15,18 +13,18 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
     internal class DatenLoggerViewModel : BindableBase
     {
         private readonly DatenLoggerControl DLC = new DatenLoggerControl();
-        private ObservableCollection<ILogEntry> _logEntries;
         private UserControl _content;
-        private ILogEntry _selectedLogEntry;
         private string _database;
+        private ObservableCollection<ILogEntry> _logEntries;
         private string _passwort;
+        private ILogEntry _selectedLogEntry;
         private string _servername;
         private string _username;
 
         public DatenLoggerViewModel()
         {
-            LogEntries= new ObservableCollection<ILogEntry>();
-           
+            LogEntries = new ObservableCollection<ILogEntry>();
+
             CmdLoad = new DelegateCommand(OnCmdLoad);
             CmdConfirm = new DelegateCommand(OnCmdConfirm);
             CmdAddLog = new DelegateCommand(OnCmdAddLog);
@@ -65,11 +63,13 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
         private DatenLoggerRepository DatenLoggerRepository { get; set; }
+
         public ObservableCollection<ILogEntry> LogEntries
         {
             get => _logEntries;
-            set { SetProperty(ref _logEntries, value); }
+            set => SetProperty(ref _logEntries, value);
         }
+
         public UserControl ContentMain
         {
             get => _content;
@@ -80,8 +80,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         {
             get => _selectedLogEntry;
             set => SetProperty(ref _selectedLogEntry, value);
-               
         }
+
         private void OnCmdLoad()
         {
             if (_servername == null)
@@ -99,7 +99,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             else
             {
                 Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
-              //  DLC.ConnectionState();
+                //  DLC.ConnectionState();
                 DatenLoggerRepository = new DatenLoggerRepository();
                 LogEntries = DatenLoggerRepository.GetAllLogEntries();
             }
@@ -120,6 +120,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         {
             ContentMain = new DatenLoggerAddView();
         }
+
         private void RefreshDatenLogEntries()
         {
             LogEntries = DatenLoggerRepository.GetAllLogEntries();

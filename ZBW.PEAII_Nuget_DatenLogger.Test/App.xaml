@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.Test"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

@@ -2,7 +2,7 @@
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model
 {
-   public interface ILogEntry
+    public interface ILogEntry
     {
         int Id { get; set; }
         string Pod { get; set; }

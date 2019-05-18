@@ -90,6 +90,7 @@
     <Compile Include="Model\Impl\DatenLoggerRepository.cs" />
     <Compile Include="Model\Impl\LogEntry.cs" />
     <Compile Include="Model\Impl\MySqlRepository.cs" />
+    <Compile Include="Repositories\SeverityLevelComboBoxItems.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
     <Compile Include="ViewModel\DatenLoggerAddViewModel.cs" />

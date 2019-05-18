@@ -9,8 +9,8 @@
     <Grid>
         <!-- <local:DatenLoggerView x:Name="DatenLoggerView" ></local:DatenLoggerView> -->
         <!-- <local:DatenLoggerAdd x:Name="DatenLoggerAdd" Visibility="{Binding DatenLoggerAddVisible}"></local:DatenLoggerAdd> -->
-        <local:DatenLoggerView x:Name="LoggerView" Visibility="{Binding DataContext.DatenloggerVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-
+        <!--  <local:DatenLoggerView x:Name="LoggerView" Visibility="{Binding DataContext.DatenloggerVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />-->
+        <local:DatenLoggerAddView x:Name="LoggerAddView" Visibility="{Binding DataContext.DatenloggerVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
         <ContentControl Name="ContentMain" Width="Auto" Opacity="1" Background="Transparent" Content="{Binding ContentMain}" />
     </Grid>
 </UserControl>

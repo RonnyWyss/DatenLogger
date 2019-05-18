@@ -5,9 +5,8 @@ using ZBW.PEAII_Nuget_DatenLogger.ViewModel;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
-     class LogEntry : BindableBase, ILogEntry
+    internal class LogEntry : BindableBase, ILogEntry
     {
-
         private int _id;
 
         public LogEntry(string hostename, string message, int severity)
@@ -23,7 +22,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             Pod = datenLoggerAddViewModel.Pod;
             Location = datenLoggerAddViewModel.Location;
             Hostname = datenLoggerAddViewModel.Hostname;
-            Severity = datenLoggerAddViewModel.Severity;
+            Severity = datenLoggerAddViewModel.SelectedSeverityItem;
             Timestamp = datenLoggerAddViewModel.Timestamp;
             Message = datenLoggerAddViewModel.Message;
         }

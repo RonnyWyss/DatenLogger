@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Mvvm;
+using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
@@ -11,14 +15,20 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         private string _location;
         private string _message;
         private string _pod;
-        private int _serverity;
+        private string _selectedHostnameItem;
+        private string _selectedLocationItem;
+        private string _selectedDeviceIdItem;
+        private int _selectedServerityItem;
+        private List<string> _serverityItems;
         private DateTime _timestamp;
+
 
 
         public DatenLoggerAddViewModel()
         {
             CmdSave = new DelegateCommand(OnCmdSave);
             CmdCancel = new DelegateCommand(OnCmdCancel);
+            SeverityItems = SeverityLevelComboBoxItems.SeverityLevel;
         }
 
         public DelegateCommand CmdSave { get; }
@@ -54,11 +64,32 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             get => _id;
             set => SetProperty(ref _id, value);
         }
-
-        public int Severity
+        public string SelectedDeviceIdItem
         {
-            get => _serverity;
-            set => SetProperty(ref _serverity, value);
+            get => _selectedDeviceIdItem;
+            set => SetProperty(ref _selectedDeviceIdItem, value);
+        }
+        public string SelectedHostnameItem
+        {
+            get => _selectedHostnameItem;
+            set => SetProperty(ref _selectedHostnameItem, value);
+        }
+        public string SelectedLocationItem
+        {
+            get => _selectedLocationItem;
+            set => SetProperty(ref _selectedLocationItem, value);
+        }
+
+        public List<string> SeverityItems
+        {
+            get => _serverityItems;
+            set => SetProperty(ref _serverityItems, value);
+        }
+
+        public int SelectedSeverityItem
+        {
+            get => _selectedServerityItem;
+            set => SetProperty(ref _selectedServerityItem, value);
         }
 
         public DateTime Timestamp
@@ -69,6 +100,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdSave()
         {
+        
         }
 
         private void OnCmdCancel()

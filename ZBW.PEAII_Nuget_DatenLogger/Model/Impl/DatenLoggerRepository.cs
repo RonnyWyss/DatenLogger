@@ -2,7 +2,6 @@
 using System.Data;
 using MySql.Data.MySqlClient;
 
-
 namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     public class DatenLoggerRepository : MySqlRepository
@@ -14,7 +13,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
         public DatenLoggerRepository()
         {
         }
-       
+
         public void AddLogEntry(ILogEntry logEntry)
         {
             using (var conn = MySqlConnection)
@@ -23,16 +22,16 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
                 var procedureName = "logMessageAdd";
                 using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName))
                 {
-                    var p1 = new MySqlParameter("in_deviceId", logEntry.Id);
+                    var p1 = new MySqlParameter("in_GeraetID", logEntry.Id); //char(36)
                     p1.Direction = ParameterDirection.Input;
                     p1.DbType = DbType.Int32;
-                    var p2 = new MySqlParameter("in_hostname", logEntry.Hostname);
+                    var p2 = new MySqlParameter("in_GeraetHostname", logEntry.Hostname);//varchar(50)
                     p2.Direction = ParameterDirection.Input;
                     p2.DbType = DbType.String;
-                    var p3 = new MySqlParameter("in_serverity", logEntry.Severity);
+                    var p3 = new MySqlParameter("in_LogLevelID", logEntry.Severity);//char(36)
                     p3.Direction = ParameterDirection.Input;
                     p3.DbType = DbType.Int32;
-                    var p4 = new MySqlParameter("in_message", logEntry.Message);
+                    var p4 = new MySqlParameter("in_LogMessage", logEntry.Message);//varchar(2000)
                     p4.Direction = ParameterDirection.Input;
                     p4.DbType = DbType.String;
 
@@ -114,6 +113,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
             return logEntries;
         }
+
         public ObservableCollection<string> GetAllHostname()
         {
             var hostnames = new ObservableCollection<string>();
