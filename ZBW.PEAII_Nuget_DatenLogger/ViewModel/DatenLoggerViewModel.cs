@@ -1,20 +1,22 @@
-﻿using System;
-using System.Windows;
-using Google.Protobuf;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
+using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
+using ZBW.PEAII_Nuget_DatenLogger.View;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class DatenLoggerViewModel : BindableBase
     {
-        private string _servername;
+        private UserControl _content;
         private string _database;
-        private string _username;
         private string _passwort;
-        private DatenLoggerControl DLC = new DatenLoggerControl();
+        private string _servername;
+        private string _username;
+        private readonly DatenLoggerControl DLC = new DatenLoggerControl();
 
         public DatenLoggerViewModel()
         {
@@ -29,18 +31,21 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
             set => SetProperty(ref _servername, value);
         }
+
         public string Database
         {
             get => _database;
 
             set => SetProperty(ref _database, value);
         }
+
         public string Username
         {
             get => _username;
 
             set => SetProperty(ref _username, value);
         }
+
         public string Passwort
         {
             get => _passwort;
@@ -52,6 +57,12 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         public DelegateCommand CmdLoad { get; }
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
+
+        public UserControl ContentMain
+        {
+            get => _content;
+            set => SetProperty(ref _content, value);
+        }
 
         private void OnCmdLoad()
         {
@@ -69,20 +80,23 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             }
             else
             {
-              Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
-                DLC.ConnectionState(_servername,_database,_username,_passwort);
+                Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
+                DLC.ConnectionState();
             }
-
         }
 
         private void OnCmdConfirm()
         {
-
         }
 
         private void OnCmdAddLog()
         {
+            NavigateToLogAddView();
+        }
 
+        public void NavigateToLogAddView()
+        {
+            ContentMain = new DatenLoggerAddView();
         }
     }
 }

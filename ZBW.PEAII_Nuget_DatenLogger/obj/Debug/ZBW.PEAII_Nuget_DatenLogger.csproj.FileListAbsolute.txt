@@ -11,7 +11,6 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAI
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.exe
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.pdb
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerView.g.cs
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerView.baml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\BouncyCastle.Crypto.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\CommonServiceLocator.dll
@@ -26,9 +25,10 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\Prism.pd
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\Prism.xml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\Prism.Wpf.pdb
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Debug\Prism.Wpf.xml
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\MainView.g.cs
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\MainView.baml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.csproj.CopyComplete
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAdd.g.cs
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAdd.baml
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\MainUserControl.g.cs
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\MainUserControl.baml
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAddView.g.cs
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAddView.baml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.csprojAssemblyReference.cache
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\GeneratedInternalTypeHelper.g.cs

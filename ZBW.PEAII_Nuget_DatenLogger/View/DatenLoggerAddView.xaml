@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ZBW.PEAII_Nuget_DatenLogger.View.DatenLoggerAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
+             xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModel:DatenLoggerAddViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="50" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="9" Grid.Row="2" ToolTip="Eintrag speichern" Command="{Binding CmdSave}">Save</Button>
+        <Button Grid.Column="9" Grid.Row="4" ToolTip="Abbrechen" Command="{Binding CmdCancel}">Cancel</Button>
+        <TextBlock Grid.Column="1" Grid.Row="1"  Text="Hostname:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding HostnameItems}" SelectedItem="{Binding Hostname}" />
+        <TextBlock Grid.Column="1" Grid.Row="5"  Text="Id:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox  Grid.Column="1" Grid.Row="6" Text="{Binding Id}"/>
+        <TextBlock Grid.Column="5" Grid.Row="1"  Text="Location:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding LocationItems}" SelectedItem="{Binding Location}" />
+        <TextBlock Grid.Column="5" Grid.Row="3"  Text="Severity:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding SeverityItems}" SelectedItem="{Binding Severity}" />
+        <TextBlock Grid.Column="1" Grid.Row="3"  Text="Pod:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding PodItems}" SelectedItem="{Binding Pod}" />
+        <TextBlock Grid.Column="3" Grid.Row="5"  Text="Timestamp:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox  Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="4" IsEnabled="False" Text="{Binding Timestamp, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
+        <TextBlock Grid.Column="1" Grid.Row="7"  Text="Message:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox  Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="8" Text="{Binding Message}"/>
+
+    </Grid>
+</UserControl>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\App.xaml
-3-433838915
+3325618972
 
-16-1048728700
+19-976704364
 281177361009
-View\DatenLoggerAdd.xaml;View\MainView.xaml;View\DatenLoggerView.xaml;
+View\DatenLoggerAddView.xaml;View\MainUserControl.xaml;View\DatenLoggerView.xaml;
 
-True
+False
 

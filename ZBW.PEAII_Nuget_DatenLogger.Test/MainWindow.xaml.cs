@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ZBW.PEAII_Nuget_DatenLogger.View
+namespace ZBW.PEAII_Nuget_DatenLogger.Test
 {
     /// <summary>
-    /// Interaction logic for DatenLoggerAdd.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class DatenLoggerAdd : UserControl
+    public partial class MainWindow : Window
     {
-        public DatenLoggerAdd()
+        public MainWindow()
         {
             InitializeComponent();
         }

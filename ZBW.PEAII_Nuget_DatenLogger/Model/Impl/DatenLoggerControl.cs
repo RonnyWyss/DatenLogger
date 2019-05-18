@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Data;
-using Google.Protobuf;
+using System.Windows;
 using MySql.Data.MySqlClient;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
-namespace ZBW.PEAII_Nuget_DatenLogger.Model
+namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class DatenLoggerControl
     {
-
-        public void ConnectionState(string servername, string database, string username, string passwort)
+        public void ConnectionState()
         {
-           // private string Connectionstring => $"Servername={this.txtServer.Text};Database={this.txtDatabase.Text};Uid={this.txtUid.Text};Pwd={this.txtPwd.Text}";
+            // private string Connectionstring => $"Servername={this.txtServer.Text};Database={this.txtDatabase.Text};Uid={this.txtUid.Text};Pwd={this.txtPwd.Text}";
             //var connStr = "Server="+servername +";Database="+ database + ";Uid=" + username + ";Pwd=" + passwort;//"Server=localhost;Database=sqlteacherdb;Uid=root;Pwd=";
 
             using (IDbConnection conn = new MySqlConnection(Settings.Default.Connectionstring)) //In diesem Befehl kann die Datenbankanbidnung gewählt werden.
@@ -22,7 +21,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model
 
                     var cmd = conn.CreateCommand();
                     cmd.CommandText = "SELECT mitarbeiternr, name, vorname, gehalt FROM mitarbeiter";
-                 // cmd.CommandText = "SELECT id, pod, location, hostname, severity, timestamp, text FROM v_logentries";
+                    // cmd.CommandText = "SELECT id, pod, location, hostname, severity, timestamp, text FROM v_logentries";
                     using (var reader = cmd.ExecuteReader())
 
                     {
@@ -48,7 +47,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    throw;
+                    MessageBox.Show(e.Message);
+                    //throw;
                 }
             }
 

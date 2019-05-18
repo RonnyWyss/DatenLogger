@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows;
 using MySql.Data.MySqlClient;
 
-namespace ZBW.PEAII_Nuget_DatenLogger.Model
+namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class DataAccess
     {

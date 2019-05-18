@@ -84,32 +84,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DataAccess.cs" />
-    <Compile Include="Model\DatenLoggerControl.cs" />
-    <Compile Include="Model\LogEntry.cs" />
+    <Compile Include="Model\ILogEntry.cs" />
+    <Compile Include="Model\Impl\DataAccess.cs" />
+    <Compile Include="Model\Impl\DatenLoggerControl.cs" />
+    <Compile Include="Model\Impl\LogEntry.cs" />
+    <Compile Include="Services\IGuidGeneratorService.cs" />
+    <Compile Include="Services\Impl\GuidGeneratorService.cs" />
     <Compile Include="ViewModel\DatenLoggerAddViewModel.cs" />
     <Compile Include="ViewModel\DatenLoggerViewModel.cs" />
-    <Compile Include="View\DatenLoggerAdd.xaml.cs">
-      <DependentUpon>DatenLoggerAdd.xaml</DependentUpon>
+    <Compile Include="View\DatenLoggerAddView.xaml.cs">
+      <DependentUpon>DatenLoggerAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DatenLoggerView.xaml.cs">
       <DependentUpon>DatenLoggerView.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\DatenLoggerAdd.xaml">
+    <Page Include="View\DatenLoggerAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\MainUserControl.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="View\MainUserControl.xaml.cs">
+      <DependentUpon>MainUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="View\DatenLoggerView.xaml">
       <SubType>Designer</SubType>
