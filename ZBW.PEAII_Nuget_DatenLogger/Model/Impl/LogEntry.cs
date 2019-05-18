@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Reflection;
+using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.ViewModel;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
-    internal class LogEntry : ILogEntry
+     class LogEntry : BindableBase, ILogEntry
     {
-        public LogEntry()
+
+        private int _id;
+
+        public LogEntry(string hostename, string message, int severity)
         {
+            Hostname = hostename;
+            Message = message;
+            Severity = severity;
         }
 
         public LogEntry(DatenLoggerAddViewModel datenLoggerAddViewModel)
@@ -21,8 +29,18 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
         }
 
         public int Severity { get; set; }
-        
-        public int Id { get; set; }
+
+        // public int Id { get; set; }
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                SetProperty(ref _id, value);
+
+                RaisePropertyChanged(MethodBase.GetCurrentMethod().Name);
+            }
+        }
 
         public string Pod { get; set; }
 

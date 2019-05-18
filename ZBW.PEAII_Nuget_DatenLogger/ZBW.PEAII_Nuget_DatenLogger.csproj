@@ -87,11 +87,14 @@
     <Compile Include="Model\ILogEntry.cs" />
     <Compile Include="Model\Impl\DataAccess.cs" />
     <Compile Include="Model\Impl\DatenLoggerControl.cs" />
+    <Compile Include="Model\Impl\DatenLoggerRepository.cs" />
     <Compile Include="Model\Impl\LogEntry.cs" />
+    <Compile Include="Model\Impl\MySqlRepository.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
     <Compile Include="ViewModel\DatenLoggerAddViewModel.cs" />
     <Compile Include="ViewModel\DatenLoggerViewModel.cs" />
+    <Compile Include="ViewModel\MainUserControlViewModel.cs" />
     <Compile Include="View\DatenLoggerAddView.xaml.cs">
       <DependentUpon>DatenLoggerAddView.xaml</DependentUpon>
     </Compile>

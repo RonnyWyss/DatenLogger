@@ -30,5 +30,5 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\Mai
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\MainUserControl.baml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAddView.g.cs
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\View\DatenLoggerAddView.baml
-C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.csprojAssemblyReference.cache
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.csprojAssemblyReference.cache

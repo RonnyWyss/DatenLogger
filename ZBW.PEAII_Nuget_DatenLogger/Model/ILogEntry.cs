@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model
 {
-    interface ILogEntry
+   public interface ILogEntry
     {
         int Id { get; set; }
         string Pod { get; set; }
@@ -15,7 +11,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model
         int Severity { get; set; }
         DateTime Timestamp { get; set; }
         string Message { get; set; }
-
-
     }
 }
