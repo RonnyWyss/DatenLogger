@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/RonnyWyss/DatenLogger.git</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>My first Nuget</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Ronny Wyss Visual Process Automation</tags>
+  </metadata>
+</package>

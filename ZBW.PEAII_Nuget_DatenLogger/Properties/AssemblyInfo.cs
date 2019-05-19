@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -7,10 +6,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ZBW.PEAII_Nuget_DatenLogger")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Datenlogger for ZBW DB")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ZBW.PEAII_Nuget_DatenLogger")]
+[assembly: AssemblyCompany("ZBW")]
+[assembly: AssemblyProduct("Aufgabe_Nuget_DatenLogger")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -52,4 +51,3 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("ZbW.PEAII_Nuget_DatenLogger.Test")]

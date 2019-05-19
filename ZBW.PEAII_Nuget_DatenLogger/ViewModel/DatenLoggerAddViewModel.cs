@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
-using ZBW.PEAII_Nuget_DatenLogger.Repositories;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
@@ -19,14 +17,16 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         private int _id;
         private string _location;
         private ObservableCollection<string> _locationItems;
-        private ObservableCollection<string> _severityItems;
         private string _message;
         private string _pod;
         private string _selectedDeviceIdItem;
         private string _selectedHostnameItem;
         private string _selectedLocationItem;
         private int _selectedServerityItem;
-       // private List<string> _serverityItems;
+
+        private ObservableCollection<string> _severityItems;
+
+        // private List<string> _serverityItems;
         private DateTime _timestamp;
 
 
@@ -35,7 +35,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             GetAddLogEntryViewModel = this;
             CmdSave = new DelegateCommand(OnCmdSave);
             CmdCancel = new DelegateCommand(OnCmdCancel);
-           // SeverityItems = SeverityLevelComboBoxItems.SeverityLevel;
+            // SeverityItems = SeverityLevelComboBoxItems.SeverityLevel;
         }
 
         public DelegateCommand CmdSave { get; }
@@ -64,6 +64,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             get => _locationItems;
             set => SetProperty(ref _locationItems, value);
         }
+
         public ObservableCollection<string> SeverityItems
         {
             get => _severityItems;
@@ -124,7 +125,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             set => SetProperty(ref _selectedLocationItem, value);
         }
 
-      /*  public List<string> ServerityItems
+        /*  public List<string> ServerityItems
         {
             get => _serverityItems;
             set => SetProperty(ref _serverityItems, value);

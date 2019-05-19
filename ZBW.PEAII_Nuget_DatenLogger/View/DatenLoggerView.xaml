@@ -54,7 +54,7 @@
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom">Servername:</Label>
         <TextBox Grid.Column="1" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankserver eingeben /Default: localhost" Text="{Binding Servername}" />
         <Label Grid.Column="3" Grid.Row="1">Datenbase:</Label>
-        <TextBox Grid.Column="3" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankname eingeben /Default: sqltecherdb" Text="{Binding Database}" />
+        <TextBox Grid.Column="3" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankname eingeben /Default: inventarisierungsloesung" Text="{Binding Database}" />
         <Label Grid.Column="5" Grid.Row="1">User Id:</Label>
         <TextBox Grid.Column="5" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Benutzername eingeben /Default: root" Text="{Binding Username}" />
         <Label Grid.Column="7" Grid.Row="1">Password:</Label>
@@ -62,7 +62,7 @@
         <Button Grid.Column="9" Grid.Row="2" ToolTip="Datenbank laden" Command="{Binding CmdLoad}">Load</Button>
         <Button Grid.Column="9" Grid.Row="4" ToolTip="Datensatz bestätigen" Command="{Binding CmdConfirm}">Confirm</Button>
 
-        <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Add</Button>
+        <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Refresh</Button>
 
         <ListView
             Name="LogEntriesGrid"

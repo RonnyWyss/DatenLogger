@@ -85,7 +85,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
                             ILogEntry logEntry = new LogEntry(r.GetString(3), r.GetString(6), r.GetInt32(4), r.GetString(2));
                             logEntry.Id = r.GetInt32(0);
                             logEntry.Pod = r.GetString(1);
-                           // logEntry.Location = r.GetString(2);
+                            // logEntry.Location = r.GetString(2);
                             logEntry.Timestamp = r.GetDateTime(5);
                             logEntries.Add(logEntry);
                         }
@@ -141,6 +141,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
             return location;
         }
+
         public ObservableCollection<string> GetAllSeverity()
         {
             var severity = new ObservableCollection<string>();
