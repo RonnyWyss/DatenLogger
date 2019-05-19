@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
              xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="650" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModel:DatenLoggerAddViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -33,25 +33,35 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="80" />
-            <RowDefinition Height="100" />
+
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="9" Grid.Row="2" ToolTip="Eintrag speichern" Command="{Binding CmdSave}">Save</Button>
-        <Button Grid.Column="9" Grid.Row="4" ToolTip="Abbrechen" Command="{Binding CmdCancel}">Cancel</Button>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Hostname:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding HostnameItems}" SelectedItem="{Binding SelectedHostnameItem}" />
-        <TextBlock Grid.Column="1" Grid.Row="5" Text="Device Id:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding DeviceIdItems}" SelectedItem="{Binding SelectedDeviceIdItem}" />
-        <TextBlock Grid.Column="5" Grid.Row="1" Text="Location:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding LocationItems}" SelectedItem="{Binding SelectedLocationItem}" />
-        <TextBlock Grid.Column="1" Grid.Row="3" Text="Severity:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding SeverityItems}" SelectedItem="{Binding SelectedSeverityItem}" />
-
-        <TextBlock Grid.Column="5" Grid.Row="3" Text="Timestamp:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <TextBox Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" IsEnabled="False" Text="{Binding Timestamp, StringFormat=dd.MM.yyyy HH:mm:ss}" />
-        <TextBlock Grid.Column="1" Grid.Row="7" Text="Message:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <TextBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="8" Text="{Binding Message, Mode=TwoWay }" />
+        <Button Grid.Column="9" Grid.Row="12" ToolTip="Eintrag speichern" Command="{Binding CmdSave}">Add Save</Button>
+        <Button Grid.Column="9" Grid.Row="14" ToolTip="Abbrechen" Command="{Binding CmdCancel}">Cancel</Button>
+        <TextBlock Grid.Column="1" Grid.Row="11" Text="Hostname:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding HostnameItems}" SelectedItem="{Binding SelectedHostnameItem}" />
+        <TextBlock Grid.Column="1" Grid.Row="15" Text="Device Id:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="16" ItemsSource="{Binding DeviceIdItems}" SelectedItem="{Binding SelectedDeviceIdItem}" />
+        <TextBlock Grid.Column="5" Grid.Row="11" Text="Location:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="5" Grid.Row="12" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding LocationItems}" SelectedItem="{Binding SelectedLocationItem}" />
+        <TextBlock Grid.Column="1" Grid.Row="13" Text="Severity:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3" Width="auto" VerticalAlignment="center" ItemsSource="{Binding SeverityItems}" SelectedItem="{Binding SelectedSeverityItem}" />
+        <TextBlock Grid.Column="5" Grid.Row="13" Text="Timestamp:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Column="5" Grid.Row="14" Grid.ColumnSpan="3" IsEnabled="False" Text="{Binding Timestamp, StringFormat=dd.MM.yyyy HH:mm:ss}" />
+        <TextBlock Grid.Column="1" Grid.Row="17" Text="Message:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="8" Text="{Binding Message, Mode=TwoWay }" />
 
     </Grid>
 </UserControl>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.ViewModel;
 
@@ -7,18 +6,20 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class LogEntry : BindableBase, ILogEntry
     {
-        private int _id;
+        // private int _id;
 
-        public LogEntry(string hostename, string message, int severity)
+        public LogEntry(string hostename, string message, int severity, string location)
         {
             Hostname = hostename;
             Message = message;
             Severity = severity;
+            Location = location;
         }
 
         public LogEntry(DatenLoggerAddViewModel datenLoggerAddViewModel)
         {
             Id = datenLoggerAddViewModel.Id;
+            DeviceId = datenLoggerAddViewModel.DeviceId;
             Pod = datenLoggerAddViewModel.Pod;
             Location = datenLoggerAddViewModel.Location;
             Hostname = datenLoggerAddViewModel.Hostname;
@@ -29,8 +30,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
         public int Severity { get; set; }
 
-        // public int Id { get; set; }
-        public int Id
+        public int Id { get; set; }
+
+        /* public int Id
         {
             get => _id;
             set
@@ -39,8 +41,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
                 RaisePropertyChanged(MethodBase.GetCurrentMethod().Name);
             }
-        }
-
+        }*/
+        public string DeviceId { get; set; }
         public string Pod { get; set; }
 
         public string Location { get; set; }

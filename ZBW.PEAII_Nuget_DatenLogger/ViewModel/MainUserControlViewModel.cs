@@ -1,12 +1,11 @@
-﻿using System.Reflection;
-using System.Windows;
+﻿using System.Windows;
 using Prism.Mvvm;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class MainUserControlViewModel : BindableBase
     {
-        private Visibility _datenloggeraddView = Visibility.Hidden;
+        private Visibility _datenloggeraddView = Visibility.Visible;
 
         private Visibility _datenloggerView;
 
@@ -24,11 +23,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         public Visibility DatenloggerVisibility
         {
             get => _datenloggerView;
-            set
-            {
-                SetProperty(ref _datenloggerView, value);
-                RaisePropertyChanged(MethodBase.GetCurrentMethod().Name);
-            }
+            set => SetProperty(ref _datenloggerView, value);
         }
 
         public void InitialView()

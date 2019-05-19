@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
              xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="650" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModel:DatenLoggerViewModel}">
 
     <Grid>
@@ -23,6 +23,7 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="50" />
 
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -34,9 +35,22 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="80" />
-            <RowDefinition Height="100" />
+
+
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
+
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom">Servername:</Label>
         <TextBox Grid.Column="1" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankserver eingeben /Default: localhost" Text="{Binding Servername}" />
         <Label Grid.Column="3" Grid.Row="1">Datenbase:</Label>
@@ -47,6 +61,7 @@
         <TextBox Grid.Column="7" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Passwort eingeben /Default: root" Text="{Binding Passwort}" />
         <Button Grid.Column="9" Grid.Row="2" ToolTip="Datenbank laden" Command="{Binding CmdLoad}">Load</Button>
         <Button Grid.Column="9" Grid.Row="4" ToolTip="Datensatz bestätigen" Command="{Binding CmdConfirm}">Confirm</Button>
+
         <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Add</Button>
 
         <ListView
@@ -66,6 +81,10 @@
                         Width="20"
                         DisplayMemberBinding="{Binding Id}"
                         Header="Id" />
+                    <GridViewColumn
+                        Width="40"
+                        DisplayMemberBinding="{Binding Timestamp}"
+                        Header="Time" />
                     <GridViewColumn
                         Width="100"
                         DisplayMemberBinding="{Binding Hostname}"

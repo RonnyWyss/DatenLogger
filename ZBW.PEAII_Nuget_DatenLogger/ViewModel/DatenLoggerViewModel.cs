@@ -6,7 +6,6 @@ using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
-using ZBW.PEAII_Nuget_DatenLogger.View;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
@@ -24,7 +23,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         public DatenLoggerViewModel()
         {
             LogEntries = new ObservableCollection<ILogEntry>();
-
             CmdLoad = new DelegateCommand(OnCmdLoad);
             CmdConfirm = new DelegateCommand(OnCmdConfirm);
             CmdAddLog = new DelegateCommand(OnCmdAddLog);
@@ -59,6 +57,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         }
 
 
+        //__________________________________________
         public DelegateCommand CmdLoad { get; }
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
@@ -118,7 +117,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         public void NavigateToLogAddView()
         {
-            ContentMain = new DatenLoggerAddView();
+            DatenLoggerAddViewModel.GetAddLogEntryViewModel.FillComboboxen();
+            RefreshDatenLogEntries();
         }
 
         private void RefreshDatenLogEntries()

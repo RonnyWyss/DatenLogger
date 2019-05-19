@@ -22,23 +22,27 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
                 var procedureName = "logMessageAdd";
                 using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName))
                 {
-                    var p1 = new MySqlParameter("in_GeraetID", logEntry.Id); //char(36)
+                    var p1 = new MySqlParameter("i_pod", logEntry.DeviceId); //char(36)
                     p1.Direction = ParameterDirection.Input;
-                    p1.DbType = DbType.Int32;
-                    var p2 = new MySqlParameter("in_GeraetHostname", logEntry.Hostname);//varchar(50)
+                    p1.DbType = DbType.String;
+                    var p2 = new MySqlParameter("i_hostname", logEntry.Hostname); //varchar(50)
                     p2.Direction = ParameterDirection.Input;
                     p2.DbType = DbType.String;
-                    var p3 = new MySqlParameter("in_LogLevelID", logEntry.Severity);//char(36)
+                    var p3 = new MySqlParameter("i_severity", logEntry.Severity); //char(36)
                     p3.Direction = ParameterDirection.Input;
                     p3.DbType = DbType.Int32;
-                    var p4 = new MySqlParameter("in_LogMessage", logEntry.Message);//varchar(2000)
+                    var p4 = new MySqlParameter("i_message", logEntry.Message); //varchar(2000)
                     p4.Direction = ParameterDirection.Input;
                     p4.DbType = DbType.String;
+                    var p5 = new MySqlParameter("i_location", logEntry.Location); //varchar(2000)
+                    p5.Direction = ParameterDirection.Input;
+                    p5.DbType = DbType.String;
 
                     cmd.Parameters.Add(p1);
                     cmd.Parameters.Add(p2);
                     cmd.Parameters.Add(p3);
                     cmd.Parameters.Add(p4);
+                    cmd.Parameters.Add(p5);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -62,28 +66,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             }
         }
 
-        public ObservableCollection<int> GetAllDeviceIds()
-        {
-            var deviceIds = new ObservableCollection<int>();
-            using (var conn = MySqlConnection)
-            {
-                conn.Open();
-
-                var statement =
-                    "select  id  from device";
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
-                {
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        while (r.Read())
-                            for (var i = 0; i < r.FieldCount; i++)
-                                deviceIds.Add(r.GetInt32(i));
-                    }
-                }
-            }
-
-            return deviceIds;
-        }
 
         public ObservableCollection<ILogEntry> GetAllLogEntries()
         {
@@ -100,10 +82,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
                     {
                         while (r.Read())
                         {
-                            ILogEntry logEntry = new LogEntry(r.GetString(3), r.GetString(6), r.GetInt32(4));
+                            ILogEntry logEntry = new LogEntry(r.GetString(3), r.GetString(6), r.GetInt32(4), r.GetString(2));
                             logEntry.Id = r.GetInt32(0);
                             logEntry.Pod = r.GetString(1);
-                            logEntry.Location = r.GetString(2);
+                           // logEntry.Location = r.GetString(2);
                             logEntry.Timestamp = r.GetDateTime(5);
                             logEntries.Add(logEntry);
                         }
@@ -135,6 +117,74 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             }
 
             return hostnames;
+        }
+
+        public ObservableCollection<string> GetAllLocation()
+        {
+            var location = new ObservableCollection<string>();
+            using (var conn = MySqlConnection)
+            {
+                conn.Open();
+
+                var statement =
+                    "select location from v_logentries";
+                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
+                {
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                            for (var i = 0; i < r.FieldCount; i++)
+                                location.Add(r.GetString(i));
+                    }
+                }
+            }
+
+            return location;
+        }
+        public ObservableCollection<string> GetAllSeverity()
+        {
+            var severity = new ObservableCollection<string>();
+            using (var conn = MySqlConnection)
+            {
+                conn.Open();
+
+                var statement =
+                    "select severity from v_logentries";
+                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
+                {
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                            for (var i = 0; i < r.FieldCount; i++)
+                                severity.Add(r.GetString(i));
+                    }
+                }
+            }
+
+            return severity;
+        }
+
+        public ObservableCollection<int> GetAllDeviceIds()
+        {
+            var deviceIds = new ObservableCollection<int>();
+            using (var conn = MySqlConnection)
+            {
+                conn.Open();
+
+                var statement =
+                    "select  device_id  from device";
+                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
+                {
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                            for (var i = 0; i < r.FieldCount; i++)
+                                deviceIds.Add(r.GetInt32(i));
+                    }
+                }
+            }
+
+            return deviceIds;
         }
     }
 }
