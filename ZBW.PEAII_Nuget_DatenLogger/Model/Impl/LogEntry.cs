@@ -6,8 +6,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class LogEntry : BindableBase, ILogEntry
     {
-        // private int _id;
-
+     
         public LogEntry(string hostename, string message, int severity, string location)
         {
             Hostname = hostename;
@@ -32,17 +31,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
         public int Id { get; set; }
 
-        /* public int Id
-        {
-            get => _id;
-            set
-            {
-                SetProperty(ref _id, value);
-
-                RaisePropertyChanged(MethodBase.GetCurrentMethod().Name);
-            }
-        }*/
         public string DeviceId { get; set; }
+
         public string Pod { get; set; }
 
         public string Location { get; set; }
@@ -52,5 +42,59 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
         public DateTime Timestamp { get; set; }
 
         public string Message { get; set; }
+
+        public override bool Equals(object value)
+        {
+            return Equals(value as LogEntry);
+        }
+
+        public bool Equals(LogEntry logEntry)
+        {
+            if (ReferenceEquals(null, logEntry))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, logEntry))
+            {
+                return true;
+            }
+
+            return string.Equals(Severity, logEntry.Severity) && string.Equals(Message, logEntry.Message);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                const int HashingBase = (int)2166136261;
+                const int HashingMultiplier = 16777619;
+                var hash = HashingBase;
+                hash = (hash * HashingMultiplier) ^ (!ReferenceEquals(null, Severity) ? Severity.GetHashCode() : 0);
+                hash = (hash * HashingMultiplier) ^ (!ReferenceEquals(null, Message) ? Message.GetHashCode() : 0);
+
+                return hash;
+            }
+        }
+
+        public static bool operator ==(LogEntry logEntryA, LogEntry LogEntryB)
+        {
+            if (ReferenceEquals(logEntryA, LogEntryB))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(null, logEntryA))
+            {
+                return false;
+            }
+
+            return logEntryA.Equals(LogEntryB);
+        }
+
+        public static bool operator !=(LogEntry logEntryA, LogEntry LogEntryB)
+        {
+            return !(logEntryA == LogEntryB);
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class DatenLoggerViewModel : BindableBase
     {
-        private readonly DatenLoggerControl DLC = new DatenLoggerControl();
         private UserControl _content;
         private string _database;
         private ObservableCollection<ILogEntry> _logEntries;
@@ -56,8 +55,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             set => SetProperty(ref _passwort, value);
         }
 
-
-        //__________________________________________
         public DelegateCommand CmdLoad { get; }
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
@@ -67,12 +64,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         {
             get => _logEntries;
             set => SetProperty(ref _logEntries, value);
-        }
-
-        public UserControl ContentMain
-        {
-            get => _content;
-            set => SetProperty(ref _content, value);
         }
 
         public ILogEntry SelectedLogEntry
@@ -98,9 +89,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             else
             {
                 Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
-                //  DLC.ConnectionState();
                 DatenLoggerRepository = new DatenLoggerRepository();
                 LogEntries = DatenLoggerRepository.GetAllLogEntries();
+                DatenLoggerAddViewModel.GetAddLogEntryViewModel.FillComboboxen();
+                RefreshDatenLogEntries();
             }
         }
 
@@ -117,8 +109,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         public void NavigateToLogAddView()
         {
-            DatenLoggerAddViewModel.GetAddLogEntryViewModel.FillComboboxen();
-            RefreshDatenLogEntries();
+            var mainUserControlVM = MainUserControlViewModel.GetInstance();
+            mainUserControlVM.DatenloggerAddVisibility = Visibility.Visible;
+            mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
+ 
         }
 
         private void RefreshDatenLogEntries()

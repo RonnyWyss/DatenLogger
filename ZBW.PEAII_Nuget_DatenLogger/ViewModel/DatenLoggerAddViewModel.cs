@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
@@ -168,6 +169,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdCancel()
         {
+            var mainUserControlVM = MainUserControlViewModel.GetInstance();
+            mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed; 
+            mainUserControlVM.DatenloggerVisibility = Visibility.Visible;
         }
     }
 }
