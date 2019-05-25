@@ -34,7 +34,7 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
 
@@ -50,21 +50,22 @@
         <Button Grid.Column="9" Grid.Row="4" ToolTip="Datensatz bestätigen" Command="{Binding CmdConfirm}">Confirm</Button>
 
         <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Add Log</Button>
-        <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdDublicateDelete}">Add Log</Button>
+        <Button Grid.Column="9" Grid.Row="8" ToolTip="Dublikate check" Command="{Binding CmdDublicateCheck}">Find Duplicates</Button>
 
         <ListView
             Name="LogEntriesGrid"
             Grid.Row="4"
             Grid.Column="1"
             Grid.ColumnSpan="7"
-            Grid.RowSpan="5"
+            Grid.RowSpan="6"
             HorizontalContentAlignment="Stretch"
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding LogEntries}"
-            SelectedIndex="0"
-            SelectedItem="{Binding SelectedLogEntry, Mode=TwoWay}">
+            SelectedIndex="{Binding SelectedIndex}"
+            SelectedItem="{Binding SelectedEntity, Mode=TwoWay}" 
+            >
             <ListView.View>
-                <GridView x:Name="logEntryGrid">
+                <GridView x:Name="logEntryGrids">
                     <GridViewColumn
                         Width="20"
                         DisplayMemberBinding="{Binding Id}"
@@ -96,5 +97,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+       
     </Grid>
 </UserControl>

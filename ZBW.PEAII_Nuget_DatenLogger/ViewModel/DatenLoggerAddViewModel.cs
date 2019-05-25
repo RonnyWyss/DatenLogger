@@ -162,9 +162,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdSave()
         {
-            ILogEntry logEntry = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
-            logEntry.DeviceId = SelectedDeviceIdItem;
-            DatenLoggerRepository.AddLogEntry(logEntry);
+            IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
+            entity.DeviceId = SelectedDeviceIdItem;
+            DatenLoggerRepository.AddLogEntry(entity);
         }
 
         private void OnCmdCancel()
@@ -172,6 +172,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             var mainUserControlVM = MainUserControlViewModel.GetInstance();
             mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed; 
             mainUserControlVM.DatenloggerVisibility = Visibility.Visible;
+            
         }
     }
 }

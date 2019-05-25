@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Dynamic;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model
 {
-    public interface ILogEntry
+    public interface IEntity : DuplicateCheckerLib.IEntity
     {
         int Id { get; set; }
         string DeviceId { get; set; }

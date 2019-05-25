@@ -1,30 +1,38 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using DuplicateCheckerLib;
 using Prism.Commands;
 using Prism.Mvvm;
-using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
+using IEntity = ZBW.PEAII_Nuget_DatenLogger.Model.IEntity;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class DatenLoggerViewModel : BindableBase
     {
         private UserControl _content;
-        private string _database;
-        private ObservableCollection<ILogEntry> _logEntries;
-        private string _passwort;
-        private ILogEntry _selectedLogEntry;
-        private string _servername;
-        private string _username;
+        private string _servername = Settings.Default.default_servername;
+        private string _database = Settings.Default.default_datenbasename;
+        private string _username = Settings.Default.default_user;
+        private List<IEntity> _logEntries;
+        private string _passwort ;
+        private IEntity _selectedEntity;
+        private IEntity _selectedEntities;
+        private int _selectedIndex;
 
         public DatenLoggerViewModel()
         {
-            LogEntries = new ObservableCollection<ILogEntry>();
+            LogEntries = new List<IEntity>();
             CmdLoad = new DelegateCommand(OnCmdLoad);
             CmdConfirm = new DelegateCommand(OnCmdConfirm);
             CmdAddLog = new DelegateCommand(OnCmdAddLog);
+            CmdDublicateCheck = new DelegateCommand(OnCmdDublicateCheck);
         }
 
         public string Servername
@@ -58,18 +66,20 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         public DelegateCommand CmdLoad { get; }
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
+        public DelegateCommand CmdDublicateCheck { get; }
         private DatenLoggerRepository DatenLoggerRepository { get; set; }
 
-        public ObservableCollection<ILogEntry> LogEntries
+        public List<IEntity> LogEntries
         {
             get => _logEntries;
             set => SetProperty(ref _logEntries, value);
         }
 
-        public ILogEntry SelectedLogEntry
+        public IEntity SelectedEntity
         {
-            get => _selectedLogEntry;
-            set => SetProperty(ref _selectedLogEntry, value);
+     
+            get => _selectedEntity;
+            set => SetProperty(ref _selectedEntity, value);
         }
 
         private void OnCmdLoad()
@@ -98,7 +108,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdConfirm()
         {
-            DatenLoggerRepository.ClearLogEntry(SelectedLogEntry);
+            DatenLoggerRepository.ClearLogEntry(SelectedEntity);
             RefreshDatenLogEntries();
         }
 
@@ -114,8 +124,20 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
  
         }
+        private void OnCmdDublicateCheck()
+        {
+       
+          var dupChecker = new DuplicateChecker();
+            var dupList = dupChecker.FindDuplicates(LogEntries);
 
-        private void RefreshDatenLogEntries()
+            foreach (var entity in dupList)
+            {
+                SelectedEntity = entity as IEntity;
+
+                
+            }
+        }
+        public void RefreshDatenLogEntries()
         {
             LogEntries = DatenLoggerRepository.GetAllLogEntries();
         }

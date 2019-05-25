@@ -34,5 +34,41 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Properties {
                 this["Connectionstring"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string default_servername {
+            get {
+                return ((string)(this["default_servername"]));
+            }
+            set {
+                this["default_servername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("inventarisierungsloesung")]
+        public string default_datenbasename {
+            get {
+                return ((string)(this["default_datenbasename"]));
+            }
+            set {
+                this["default_datenbasename"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string default_user {
+            get {
+                return ((string)(this["default_user"]));
+            }
+            set {
+                this["default_user"] = value;
+            }
+        }
     }
 }

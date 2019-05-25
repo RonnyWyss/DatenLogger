@@ -1,10 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ZBW.PEAII_Nuget_DatenLogger.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="Connectionstring" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="default_servername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="default_datenbasename" Type="System.String" Scope="User">
+      <Value Profile="(Default)">inventarisierungsloesung</Value>
+    </Setting>
+    <Setting Name="default_user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
     </Setting>
   </Settings>
 </SettingsFile>
