@@ -97,6 +97,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             return logEntries;
         }
 
+
+
         public ObservableCollection<string> GetAllHostname()
         {
             var hostnames = new ObservableCollection<string>();
@@ -188,5 +190,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
             return deviceIds;
         }
+
+       
     }
 }

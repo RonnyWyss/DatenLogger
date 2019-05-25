@@ -124,19 +124,21 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
  
         }
+
         private void OnCmdDublicateCheck()
         {
-       
-          var dupChecker = new DuplicateChecker();
+           var dupChecker = new DuplicateChecker();
             var dupList = dupChecker.FindDuplicates(LogEntries);
-
+            List<IEntity> temp = new List<IEntity>();
+          
             foreach (var entity in dupList)
             {
-                SelectedEntity = entity as IEntity;
-
-                
+                temp.Add(entity as IEntity);
             }
+            LogEntries.Clear();
+            LogEntries = temp;
         }
+
         public void RefreshDatenLogEntries()
         {
             LogEntries = DatenLoggerRepository.GetAllLogEntries();

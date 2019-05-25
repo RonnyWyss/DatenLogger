@@ -61,7 +61,7 @@
             HorizontalContentAlignment="Stretch"
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding LogEntries}"
-            SelectedIndex="{Binding SelectedIndex}"
+            SelectedIndex="0"
             SelectedItem="{Binding SelectedEntity, Mode=TwoWay}" 
             >
             <ListView.View>

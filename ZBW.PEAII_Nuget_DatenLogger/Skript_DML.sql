@@ -142,9 +142,14 @@ VALUES
 
 INSERT INTO v_logentries(pod, location, hostname, severity, `timestamp`, message)
 VALUES
-("test1", "St. Gallen", "schokoladenweg", 5, now(), "Das ist eine aufwändige Aufgabe"),
-("test2", "Appenzell", "Fählensee", 3, now(), "Gruss aus dem Alpstein"),
-("test3", "Abtwil", "Zbw", 3, now(), "Keine Lust mehr auf Schulabende..");
+("test1", "St. Gallen", "CiscoR1", 5, now(), "Störung am Gerät"),
+("test2", "Appenzell", "CSTA003", 3, now(), "Temperatur überschritten"),
+("test3", "Abtwil", "TelCo099", 3, now(), "Falsche Konfiguration geladen"),
+("test4", "Rorschach", "CiscoR006", 2, now(), "Warnung am Leitsystem"),
+("test5", "Wil", "Cisco-PRT-032", 1, now(), "Benutzer Probleme"),
+("test5", "Wil", "Cisco-PRT-032", 1, now(), "Benutzer Probleme"),
+("test3", "Abtwil", "TelCo099", 3, now(), "Falsche Konfiguration geladen");
+
 
 INSERT INTO Interface (interface_id, network_fk, device_fk, ip_adress_v4, mac_adresse, isFullDuplex, bandwith, is_in_use, description)
 VALUES
