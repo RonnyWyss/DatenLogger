@@ -24,10 +24,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
         private string _selectedHostnameItem;
         private string _selectedLocationItem;
         private int _selectedServerityItem;
+        private ObservableCollection<int> _severityItems;
 
-        private ObservableCollection<string> _severityItems;
-
-        // private List<string> _serverityItems;
         private DateTime _timestamp;
 
 
@@ -66,7 +64,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             set => SetProperty(ref _locationItems, value);
         }
 
-        public ObservableCollection<string> SeverityItems
+        public ObservableCollection<int> SeverityItems
         {
             get => _severityItems;
             set => SetProperty(ref _severityItems, value);
@@ -126,12 +124,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             set => SetProperty(ref _selectedLocationItem, value);
         }
 
-        /*  public List<string> ServerityItems
-        {
-            get => _serverityItems;
-            set => SetProperty(ref _serverityItems, value);
-        }*/
-
         public int SelectedSeverityItem
         {
             get => _selectedServerityItem;
@@ -152,7 +144,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         public void FillComboboxen()
         {
-            // MainUserControlViewModel = MainUserControlViewModel.GetMainUserControlViewModel;
             SetDatenLoggerRepository();
             DeviceIdItems = DatenLoggerRepository.GetAllDeviceIds();
             HostnameItems = DatenLoggerRepository.GetAllHostname();
@@ -162,17 +153,39 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         private void OnCmdSave()
         {
-            IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
-            entity.DeviceId = SelectedDeviceIdItem;
-            DatenLoggerRepository.AddLogEntry(entity);
+            if (SelectedHostnameItem == null)
+            {
+                MessageBox.Show("Wählen Sie einen Hostnamen");
+            }
+            else if (Message == null)
+            {
+                MessageBox.Show("Schreiben Sie eine Nachricht");
+            }
+            else if (SelectedSeverityItem == 0)
+            {
+                MessageBox.Show("Wählen Sie eine Dringlichkeitsstufe");
+            }
+            else if (SelectedLocationItem == null)
+            {
+                MessageBox.Show("Wählen Sie den Ort aus");
+            }
+            else if (SelectedDeviceIdItem == null)
+            {
+                MessageBox.Show("Wählen Sie eine PoD");
+            }
+            else
+            {
+                IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
+                entity.DeviceId = SelectedDeviceIdItem;
+                DatenLoggerRepository.AddLogEntry(entity);
+            }
         }
 
         private void OnCmdCancel()
         {
             var mainUserControlVM = MainUserControlViewModel.GetInstance();
-            mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed; 
+            mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed;
             mainUserControlVM.DatenloggerVisibility = Visibility.Visible;
-            
         }
     }
 }

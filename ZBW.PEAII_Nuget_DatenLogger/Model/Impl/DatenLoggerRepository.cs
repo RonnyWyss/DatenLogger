@@ -98,7 +98,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
         }
 
 
-
         public ObservableCollection<string> GetAllHostname()
         {
             var hostnames = new ObservableCollection<string>();
@@ -145,9 +144,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             return location;
         }
 
-        public ObservableCollection<string> GetAllSeverity()
+        public ObservableCollection<int> GetAllSeverity()
         {
-            var severity = new ObservableCollection<string>();
+            var severity = new ObservableCollection<int>();
             using (var conn = MySqlConnection)
             {
                 conn.Open();
@@ -160,7 +159,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
                     {
                         while (r.Read())
                             for (var i = 0; i < r.FieldCount; i++)
-                                severity.Add(r.GetString(i));
+                                severity.Add(r.GetInt32(i));
                     }
                 }
             }
@@ -190,7 +189,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
             return deviceIds;
         }
-
-       
     }
 }

@@ -5,13 +5,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 {
     internal class MainUserControlViewModel : BindableBase
     {
-        private Visibility _datenloggerView = Visibility.Visible;
+        //Singleton
+        private static MainUserControlViewModel instance;
         private Visibility _datenloggeraddView = Visibility.Collapsed;
-
-        public MainUserControlViewModel()
-        {
-           
-        }
+        private Visibility _datenloggerView = Visibility.Visible;
 
         public Visibility DatenloggerAddVisibility
         {
@@ -25,14 +22,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             set => SetProperty(ref _datenloggerView, value);
         }
 
-    //Singleton
-        private static MainUserControlViewModel instance;
         public static MainUserControlViewModel GetInstance()
         {
-            if (instance == null)
-            {
-                instance = new MainUserControlViewModel();
-            }
+            if (instance == null) instance = new MainUserControlViewModel();
 
             return instance;
         }

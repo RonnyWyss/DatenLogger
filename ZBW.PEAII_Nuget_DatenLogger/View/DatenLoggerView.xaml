@@ -62,8 +62,7 @@
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding LogEntries}"
             SelectedIndex="0"
-            SelectedItem="{Binding SelectedEntity, Mode=TwoWay}" 
-            >
+            SelectedItem="{Binding SelectedEntity, Mode=TwoWay}">
             <ListView.View>
                 <GridView x:Name="logEntryGrids">
                     <GridViewColumn
@@ -97,6 +96,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-       
+
     </Grid>
 </UserControl>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Dynamic;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model
 {

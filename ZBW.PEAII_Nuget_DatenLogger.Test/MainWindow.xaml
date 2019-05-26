@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View;assembly=ZBW.PEAII_Nuget_DatenLogger"
 
         mc:Ignorable="d"
-        Title="MainWindow"  SizeToContent="WidthAndHeight" >
+        Title="MainWindow" SizeToContent="WidthAndHeight">
     <Grid>
         <view:MainUserControl x:Name="MainUserControl" />
     </Grid>

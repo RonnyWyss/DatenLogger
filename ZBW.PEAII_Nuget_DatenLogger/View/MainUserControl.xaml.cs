@@ -12,7 +12,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.View
         {
             InitializeComponent();
             DataContext = MainUserControlViewModel.GetInstance();
-           
         }
     }
 }

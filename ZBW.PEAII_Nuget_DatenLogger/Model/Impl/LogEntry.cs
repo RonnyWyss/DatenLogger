@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Collections;
 using Prism.Mvvm;
-using ZBW.PEAII_Nuget_DatenLogger.ViewModel;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class LogEntry : BindableBase, IEntity
     {
-     
         public LogEntry(string hostename, string message, int severity, string location)
         {
             Hostname = hostename;
             Message = message;
             Severity = severity;
             Location = location;
-        }
-        public LogEntry()
-        {
-   
+            Timestamp = DateTime.Now;
         }
 
-        /* public LogEntry(DatenLoggerAddViewModel datenLoggerAddViewModel)
-         {
-             Id = datenLoggerAddViewModel.Id;
-             DeviceId = datenLoggerAddViewModel.DeviceId;
-             Pod = datenLoggerAddViewModel.Pod;
-             Location = datenLoggerAddViewModel.Location;
-             Hostname = datenLoggerAddViewModel.Hostname;
-             Severity = datenLoggerAddViewModel.SelectedSeverityItem;
-             Timestamp = datenLoggerAddViewModel.Timestamp;
-             Message = datenLoggerAddViewModel.Message;
-         }*/
+
+        //public LogEntry(DatenLoggerAddViewModel datenLoggerAddViewModel)
+        //{
+        //    Id = datenLoggerAddViewModel.Id;
+        //    DeviceId = datenLoggerAddViewModel.DeviceId;
+        //    Pod = datenLoggerAddViewModel.Pod;
+        //    Location = datenLoggerAddViewModel.Location;
+        //    Hostname = datenLoggerAddViewModel.Hostname;
+        //    Severity = datenLoggerAddViewModel.SelectedSeverityItem;
+        //    Timestamp = datenLoggerAddViewModel.Timestamp;
+        //    Message = datenLoggerAddViewModel.Message;
+        //}
 
         public int Severity { get; set; }
 
@@ -55,24 +50,18 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
         public bool Equals(LogEntry entity)
         {
-            if (ReferenceEquals(null, entity))
-            {
-                return false;
-            }
+            if (ReferenceEquals(null, entity)) return false;
 
-            if (ReferenceEquals(this, entity))
-            {
-                return true;
-            }
+            if (ReferenceEquals(this, entity)) return true;
 
-            return string.Equals(Severity, entity.Severity) && string.Equals(Message, entity.Message);
+            return Equals(Severity, entity.Severity) && string.Equals(Message, entity.Message);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                const int HashingBase = (int)2166136261;
+                const int HashingBase = (int) 2166136261;
                 const int HashingMultiplier = 16777619;
                 var hash = HashingBase;
                 hash = (hash * HashingMultiplier) ^ (!ReferenceEquals(null, Severity) ? Severity.GetHashCode() : 0);
@@ -84,15 +73,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 
         public static bool operator ==(LogEntry entityA, LogEntry entityB)
         {
-            if (ReferenceEquals(entityA, entityB))
-            {
-                return true;
-            }
+            if (ReferenceEquals(entityA, entityB)) return true;
 
-            if (ReferenceEquals(null, entityA))
-            {
-                return false;
-            }
+            if (ReferenceEquals(null, entityA)) return false;
 
             return entityA.Equals(entityB);
         }

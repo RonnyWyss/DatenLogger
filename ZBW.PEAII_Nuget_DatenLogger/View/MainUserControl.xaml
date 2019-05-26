@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
              mc:Ignorable="d">
     <Grid>
-      
+
         <local:DatenLoggerAddView x:Name="LoggerAddView" Visibility="{Binding DataContext.DatenloggerAddVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
         <local:DatenLoggerView x:Name="LoggerView" Visibility="{Binding DataContext.DatenloggerVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-       
+
     </Grid>
 </UserControl>

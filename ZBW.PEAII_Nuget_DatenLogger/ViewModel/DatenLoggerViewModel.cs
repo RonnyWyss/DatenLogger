@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using DuplicateCheckerLib;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -17,14 +13,14 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
     internal class DatenLoggerViewModel : BindableBase
     {
         private UserControl _content;
-        private string _servername = Settings.Default.default_servername;
         private string _database = Settings.Default.default_datenbasename;
-        private string _username = Settings.Default.default_user;
         private List<IEntity> _logEntries;
-        private string _passwort ;
-        private IEntity _selectedEntity;
+        private string _passwort;
         private IEntity _selectedEntities;
+        private IEntity _selectedEntity;
         private int _selectedIndex;
+        private string _servername = Settings.Default.default_servername;
+        private string _username = Settings.Default.default_user;
 
         public DatenLoggerViewModel()
         {
@@ -77,7 +73,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
 
         public IEntity SelectedEntity
         {
-     
             get => _selectedEntity;
             set => SetProperty(ref _selectedEntity, value);
         }
@@ -122,20 +117,15 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ViewModel
             var mainUserControlVM = MainUserControlViewModel.GetInstance();
             mainUserControlVM.DatenloggerAddVisibility = Visibility.Visible;
             mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
- 
         }
 
         private void OnCmdDublicateCheck()
         {
-           var dupChecker = new DuplicateChecker();
+            var dupChecker = new DuplicateChecker();
             var dupList = dupChecker.FindDuplicates(LogEntries);
-            List<IEntity> temp = new List<IEntity>();
-          
-            foreach (var entity in dupList)
-            {
-                temp.Add(entity as IEntity);
-            }
-            LogEntries.Clear();
+            var temp = new List<IEntity>();
+
+            foreach (var entity in dupList) temp.Add(entity as IEntity);
             LogEntries = temp;
         }
 
