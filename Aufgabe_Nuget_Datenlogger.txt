@@ -1,15 +1,15 @@
-Aufgabe My first Nuget Datenlogger (Owners: rwyss)
+Aufgabe My first Nuget Datenlogger (Owners: Ronny Wyss)
 ***************************************************************
 Package-ID: ZBW.PEAII_Nuget_DatenLogger
 ***************************************************************
 .NET CLI
-dotnet add package ZBW.PEAII_Nuget_DatenLogger --version 1.0.0
+dotnet add package ZBW.PEAII_Nuget_DatenLogger --version 2.0.0
 ***************************************************************
 Package Manager:
-Install-Package ZBW.PEAII_Nuget_DatenLogger -Version 1.0.0
+Install-Package ZBW.PEAII_Nuget_DatenLogger -Version 2.0.0
 ***************************************************************
 Package Reference:
-<PackageReference Include="ZBW.PEAII_Nuget_DatenLogger" Version="1.0.0" />
+<PackageReference Include="ZBW.PEAII_Nuget_DatenLogger" Version="2.0.0" />
 ***************************************************************
 
 How to use:
@@ -26,5 +26,5 @@ https://github.com/RonnyWyss/DatenLogger.git
 
 !!!!!!!!!!The MySQL Database Skript_DLL.sql & Skript_DML.sql ist on the Github.!!!!!!!
 
-
+Gruss
 Ronny Wyss
