@@ -1,3 +1,5 @@
+-- Ronny's Datenbase Version 01.06.2019
+
 DROP DATABASE IF EXISTS inventarisierungsloesung;
 
 CREATE DATABASE IF NOT EXISTS Inventarisierungsloesung
@@ -44,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Location (
 location_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 address_fk INT UNSIGNED NOT NULL,
 designation VARCHAR(45) NOT NULL,
-building INT UNSIGNED NOT NULL,
+building VARCHAR(45) NOT NULL,
 room INT UNSIGNED NOT NULL,
 FOREIGN KEY (address_fk) REFERENCES Address(address_id)ON DELETE CASCADE
 );

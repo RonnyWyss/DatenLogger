@@ -49,9 +49,9 @@ VALUES
 
 INSERT INTO location( address_fk, designation, building, room)
 VALUES
-(1, 'Vertriebszentrum Tabak', 2, 4),
-(2, 'Absteige',5,9),
-(3, 'Consult & Pepper', 6,9);
+(1, 'Cenote', 'Gebäude 1', 4),
+(2, 'Himalaya','Gebäude 2',9),
+(3, 'Everest', 'Gebäude 3',9);
 
 
 INSERT INTO pointofdelivery(customer_person_fk, contact_person_fk, location_fk, designation, timezone, timeZonePositiv, ntpServerIp)

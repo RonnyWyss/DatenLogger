@@ -109,8 +109,14 @@
     <Compile Include="Model\Impl\DataAccess.cs" />
     <Compile Include="Model\Impl\DatenLoggerControl.cs" />
     <Compile Include="Model\Impl\DatenLoggerRepository.cs" />
+    <Compile Include="Model\Impl\Location.cs" />
     <Compile Include="Model\Impl\LogEntry.cs" />
+    <Compile Include="Model\Impl\Logging.cs" />
     <Compile Include="Model\Impl\MySqlRepository.cs" />
+    <Compile Include="Persistence\IRepositoryBase.cs" />
+    <Compile Include="Persistence\RepositoryBase.cs" />
+    <Compile Include="Repositories\LocationRepository.cs" />
+    <Compile Include="Repositories\LoggingRepository.cs" />
     <Compile Include="Repositories\SeverityLevelComboBoxItems.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
