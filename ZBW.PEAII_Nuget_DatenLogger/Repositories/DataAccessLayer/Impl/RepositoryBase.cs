@@ -6,19 +6,21 @@ using System.Windows;
 using MySql.Data.MySqlClient;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
-namespace ZBW.PEAII_Nuget_DatenLogger.Persistence
+namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
 {
-    internal class RepositoryBase<M> : IRepositoryBase<M>
+    public abstract class RepositoryBase<M> : IRepositoryBase<M>
     {
         protected RepositoryBase()
         {
-            MySqlConnection = new MySqlConnection(Settings.Default.Connectionstring);
+            this.ConnectionString = Settings.Default.Connectionstring;
         }
 
         protected RepositoryBase(string connString)
         {
-            MySqlConnection = new MySqlConnection(connString);
+            this.ConnectionString = connString;
         }
+
+        protected string ConnectionString { get; }
 
         protected IDbConnection MySqlConnection { get; set; }
 
@@ -74,10 +76,19 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Persistence
 
         public long Count()
         {
+            using (var conn = new MySqlConnection(this.ConnectionString))
+            {
+                using (var cmd = conn.CreateCommand())
+                {
+                    conn.Open();
+                    cmd.CommandText = $"select count(*) from {this.TableName}";
+                    return (long)cmd.ExecuteScalar();
+                }
+            }
             throw new NotImplementedException();
         }
 
-        public string TableName { get; }
+        public abstract string TableName { get; }
 
         protected IDbCommand CreateCommand(IDbConnection myConnection, CommandType commandType, string coomandText)
         {
@@ -120,5 +131,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Persistence
                 MySqlConnection.Close();
             }
         }
+
+        protected abstract M CreateEntity(IDataReader r);
     }
 }

@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>serial-port-monitor.ico</ApplicationIcon>
+    <ApplicationIcon>Images\serial-port-monitor.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -120,9 +120,13 @@
     <Compile Include="Repositories\DataAccessLayer\Impl\MySqlRepositoryBase.cs" />
     <Compile Include="Repositories\DataAccessLayer\IRepositoryBase.cs" />
     <Compile Include="Repositories\DataAccessLayer\Impl\RepositoryBase.cs" />
-    <Compile Include="Repositories\LocationRepository.cs" />
-    <Compile Include="Repositories\LoggingRepository.cs" />
-    <Compile Include="Repositories\SeverityLevelComboBoxItems.cs" />
+    <Compile Include="Repositories\Table\ILocationRepository.cs" />
+    <Compile Include="Repositories\Table\ILoggingRepository.cs" />
+    <Compile Include="Repositories\Table\Impl\LocationRepository.cs" />
+    <Compile Include="Repositories\Table\Impl\LoggingRepository.cs" />
+    <Compile Include="00_NotImpl\SeverityLevelComboBoxItems.cs" />
+    <Compile Include="Repositories\Table\Impl\DeviceRepository.cs" />
+    <Compile Include="Repositories\Table\IDeviceRepository.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
     <Compile Include="ModelView\DatenLoggerAddModelView.cs" />
@@ -181,11 +185,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="serial-port-monitor.ico" />
+    <Resource Include="Images\serial-port-monitor.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

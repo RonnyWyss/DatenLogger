@@ -35,7 +35,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             GetAddLogEntryModelView = this;
             CmdSave = new DelegateCommand(OnCmdSave);
             CmdCancel = new DelegateCommand(OnCmdCancel);
-            // SeverityItems = SeverityLevelComboBoxItems.SeverityLevel;
         }
 
         public DelegateCommand CmdSave { get; }
@@ -43,6 +42,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         public DelegateCommand CmdCancel { get; }
 
         public DatenLoggerRepository DatenLoggerRepository { get; set; }
+
+        public 
 
 
         public static DatenLoggerAddModelView GetAddLogEntryModelView { get; private set; }
@@ -176,13 +177,21 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             }
             else
             {
+
                 IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
                 entity.DeviceId = SelectedDeviceIdItem;
                 DatenLoggerRepository.AddLogEntry(entity);
+
+
+                NavigateToDatenloggerView();
             }
         }
 
-        private void OnCmdCancel()
+ private void OnCmdCancel()
+        {
+         NavigateToDatenloggerView();
+        }
+        public void NavigateToDatenloggerView()
         {
             var mainUserControlVM = MainUserControlModelView.GetInstance();
             mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ZBW.PEAII_Nuget_DatenLogger.Persistence
+namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
 {
     public interface IRepositoryBase<M>
     {
