@@ -3,11 +3,13 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\ZBW.PE
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\ZBW.PEAII_Nuget_DatenLogger.pdb
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\BouncyCastle.Crypto.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\CommonServiceLocator.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\DuplicateCheckerLib.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Google.Protobuf.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\MySql.Data.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Prism.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Prism.Wpf.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\System.Windows.Interactivity.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Google.Protobuf.pdb
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Google.Protobuf.xml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\MySql.Data.xml
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\Prism.pdb

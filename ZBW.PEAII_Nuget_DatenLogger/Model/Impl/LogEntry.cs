@@ -14,19 +14,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
             Timestamp = DateTime.Now;
         }
 
-
-        //public LogEntry(DatenLoggerAddViewModel datenLoggerAddViewModel)
-        //{
-        //    Id = datenLoggerAddViewModel.Id;
-        //    DeviceId = datenLoggerAddViewModel.DeviceId;
-        //    Pod = datenLoggerAddViewModel.Pod;
-        //    Location = datenLoggerAddViewModel.Location;
-        //    Hostname = datenLoggerAddViewModel.Hostname;
-        //    Severity = datenLoggerAddViewModel.SelectedSeverityItem;
-        //    Timestamp = datenLoggerAddViewModel.Timestamp;
-        //    Message = datenLoggerAddViewModel.Message;
-        //}
-
         public int Severity { get; set; }
 
         public int Id { get; set; }

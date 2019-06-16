@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ZBW.PEAII_Nuget_DatenLogger.ViewModel;
+using ZBW.PEAII_Nuget_DatenLogger.ModelView;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.View
 {
@@ -11,7 +11,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.View
         public DatenLoggerView()
         {
             InitializeComponent();
-            DataContext = new DatenLoggerViewModel();
+            DataContext = new DatenLoggerModelView();
         }
     }
 }

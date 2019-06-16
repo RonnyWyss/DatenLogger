@@ -1,7 +1,6 @@
 ﻿namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
-    public class Logging
+    public class Logging : ILogging
     {
-        
     }
 }

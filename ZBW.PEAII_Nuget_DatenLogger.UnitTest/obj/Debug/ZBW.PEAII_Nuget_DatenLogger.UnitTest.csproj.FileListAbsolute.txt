@@ -1,0 +1,13 @@
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.pdb
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.csproj.CoreCompileInputs.cache
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.csproj.CopyComplete
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.pdb

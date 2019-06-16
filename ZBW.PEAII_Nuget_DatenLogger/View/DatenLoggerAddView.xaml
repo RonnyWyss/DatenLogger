@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
-             xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ViewModel"
+             xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ModelView"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModel:DatenLoggerAddViewModel}">
+             d:DataContext="{d:DesignInstance viewModel:DatenLoggerAddModelView}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />

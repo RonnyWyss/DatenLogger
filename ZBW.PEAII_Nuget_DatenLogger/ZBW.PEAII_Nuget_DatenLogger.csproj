@@ -105,38 +105,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\IDevice.cs" />
     <Compile Include="Model\IEntity.cs" />
-    <Compile Include="Model\Impl\DataAccess.cs" />
-    <Compile Include="Model\Impl\DatenLoggerControl.cs" />
-    <Compile Include="Model\Impl\DatenLoggerRepository.cs" />
+    <Compile Include="Model\ILocation.cs" />
+    <Compile Include="00_NotImpl\DataAccess.cs" />
+    <Compile Include="00_NotImpl\DatenLoggerControl.cs" />
+    <Compile Include="Model\ILogging.cs" />
+    <Compile Include="Model\Impl\Logging.cs" />
+    <Compile Include="Repositories\DataAccessLayer\IMySqlRepositoryBase.cs" />
+    <Compile Include="Repositories\DatenLoggerRepository.cs" />
+    <Compile Include="Model\Impl\Device.cs" />
     <Compile Include="Model\Impl\Location.cs" />
     <Compile Include="Model\Impl\LogEntry.cs" />
-    <Compile Include="Model\Impl\Logging.cs" />
-    <Compile Include="Model\Impl\MySqlRepository.cs" />
-    <Compile Include="Persistence\IRepositoryBase.cs" />
-    <Compile Include="Persistence\RepositoryBase.cs" />
+    <Compile Include="Repositories\DataAccessLayer\Impl\MySqlRepositoryBase.cs" />
+    <Compile Include="Repositories\DataAccessLayer\IRepositoryBase.cs" />
+    <Compile Include="Repositories\DataAccessLayer\Impl\RepositoryBase.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Repositories\LoggingRepository.cs" />
     <Compile Include="Repositories\SeverityLevelComboBoxItems.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
-    <Compile Include="ViewModel\DatenLoggerAddViewModel.cs" />
-    <Compile Include="ViewModel\DatenLoggerViewModel.cs" />
-    <Compile Include="ViewModel\MainUserControlViewModel.cs" />
+    <Compile Include="ModelView\DatenLoggerAddModelView.cs" />
+    <Compile Include="ModelView\DatenLoggerModelView.cs" />
+    <Compile Include="ModelView\MainUserControlModelView.cs" />
     <Compile Include="View\DatenLoggerAddView.xaml.cs">
       <DependentUpon>DatenLoggerAddView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DatenLoggerDublicatesView.xaml.cs">
-      <DependentUpon>DatenLoggerDublicatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DatenLoggerView.xaml.cs">
       <DependentUpon>DatenLoggerView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\DatenLoggerAddView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DatenLoggerDublicatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,7 +182,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="RepositoryPattern\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="serial-port-monitor.ico" />

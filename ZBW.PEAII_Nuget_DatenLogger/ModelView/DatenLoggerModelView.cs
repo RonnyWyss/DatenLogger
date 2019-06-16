@@ -1,0 +1,137 @@
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using DuplicateCheckerLib;
+using Prism.Commands;
+using Prism.Mvvm;
+using ZBW.PEAII_Nuget_DatenLogger.Properties;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories;
+using IEntity = ZBW.PEAII_Nuget_DatenLogger.Model.IEntity;
+
+namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
+{
+    internal class DatenLoggerModelView : BindableBase
+    {
+        private UserControl _content;
+        private string _database = Settings.Default.default_datenbasename;
+        private List<IEntity> _logEntries;
+        private string _passwort;
+        private IEntity _selectedEntities;
+        private IEntity _selectedEntity;
+        private int _selectedIndex;
+        private string _servername = Settings.Default.default_servername;
+        private string _username = Settings.Default.default_user;
+
+        public DatenLoggerModelView()
+        {
+            LogEntries = new List<IEntity>();
+            CmdLoad = new DelegateCommand(OnCmdLoad);
+            CmdConfirm = new DelegateCommand(OnCmdConfirm);
+            CmdAddLog = new DelegateCommand(OnCmdAddLog);
+            CmdDublicateCheck = new DelegateCommand(OnCmdDublicateCheck);
+        }
+
+        public string Servername
+        {
+            get => _servername;
+
+            set => SetProperty(ref _servername, value);
+        }
+
+        public string Database
+        {
+            get => _database;
+
+            set => SetProperty(ref _database, value);
+        }
+
+        public string Username
+        {
+            get => _username;
+
+            set => SetProperty(ref _username, value);
+        }
+
+        public string Passwort
+        {
+            get => _passwort;
+
+            set => SetProperty(ref _passwort, value);
+        }
+
+        public DelegateCommand CmdLoad { get; }
+        public DelegateCommand CmdConfirm { get; }
+        public DelegateCommand CmdAddLog { get; }
+        public DelegateCommand CmdDublicateCheck { get; }
+        private DatenLoggerRepository DatenLoggerRepository { get; set; }
+
+        public List<IEntity> LogEntries
+        {
+            get => _logEntries;
+            set => SetProperty(ref _logEntries, value);
+        }
+
+        public IEntity SelectedEntity
+        {
+            get => _selectedEntity;
+            set => SetProperty(ref _selectedEntity, value);
+        }
+
+        private void OnCmdLoad()
+        {
+            if (_servername == null)
+            {
+                MessageBox.Show("Geben Sie den Servername ein (Default: 'localhost')");
+            }
+            else if (_database == null)
+            {
+                MessageBox.Show("Geben Sie den Datenbankname ein (Default: 'sqltechdb')");
+            }
+            else if (_username == null)
+            {
+                MessageBox.Show("Geben Sie einen Benutzername ein (Default: 'root')");
+            }
+            else
+            {
+                Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
+                DatenLoggerRepository = new DatenLoggerRepository();
+                LogEntries = DatenLoggerRepository.GetAllLogEntries();
+                DatenLoggerAddModelView.GetAddLogEntryModelView.FillComboboxen();
+                RefreshDatenLogEntries();
+            }
+        }
+
+        private void OnCmdConfirm()
+        {
+            DatenLoggerRepository.ClearLogEntry(SelectedEntity);
+            RefreshDatenLogEntries();
+        }
+
+        private void OnCmdAddLog()
+        {
+            NavigateToLogAddView();
+        }
+
+        public void NavigateToLogAddView()
+        {
+            var mainUserControlVM = MainUserControlModelView.GetInstance();
+            mainUserControlVM.DatenloggerAddVisibility = Visibility.Visible;
+            mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
+        }
+
+        private void OnCmdDublicateCheck()
+        {
+            var dupChecker = new DuplicateChecker();
+            var dupList = dupChecker.FindDuplicates(LogEntries);
+            var temp = new List<IEntity>();
+
+            foreach (var entity in dupList) temp.Add(entity as IEntity);
+            LogEntries = temp;
+        }
+
+        public void RefreshDatenLogEntries()
+        {
+            LogEntries = DatenLoggerRepository.GetAllLogEntries();
+        }
+    }
+}

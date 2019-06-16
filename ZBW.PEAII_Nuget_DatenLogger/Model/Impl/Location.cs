@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
+﻿namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
-    class Location
+    public class Location : ILocation
     {
-
-
         public int LocationId { get; set; }
-        public int AdressFk { get; set; }
+        public int Fk_Adress { get; set; }
         public int Room { get; set; }
         public string Designation { get; set; }
         public string Building { get; set; }
-     }
+        public int ParentId { get; set; }
+    }
 }

@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
-             xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ViewModel"
+             xmlns:viewModel="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ModelView"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModel:DatenLoggerViewModel}">
+             d:DataContext="{d:DesignInstance viewModel:DatenLoggerModelView}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,6 +18,7 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="50" />
@@ -39,25 +40,25 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom">Servername:</Label>
-        <TextBox Grid.Column="1" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankserver eingeben /Default: localhost" Text="{Binding Servername}" />
+        <TextBox Grid.Column="1" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankserver eingeben /Default: localhost" Text="{Binding Servername}" Margin="0,5" />
         <Label Grid.Column="3" Grid.Row="1">Datenbase:</Label>
-        <TextBox Grid.Column="3" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankname eingeben /Default: inventarisierungsloesung" Text="{Binding Database}" />
+        <TextBox Grid.Column="3" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Datenbankname eingeben /Default: inventarisierungsloesung" Text="{Binding Database}" Margin="0,5" />
         <Label Grid.Column="5" Grid.Row="1">User Id:</Label>
-        <TextBox Grid.Column="5" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Benutzername eingeben /Default: root" Text="{Binding Username}" />
-        <Label Grid.Column="7" Grid.Row="1">Password:</Label>
-        <TextBox Grid.Column="7" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Passwort eingeben /Default: root" Text="{Binding Passwort}" />
-        <Button Grid.Column="9" Grid.Row="2" ToolTip="Datenbank laden" Command="{Binding CmdLoad}">Load</Button>
-        <Button Grid.Column="9" Grid.Row="4" ToolTip="Datensatz bestätigen" Command="{Binding CmdConfirm}">Confirm</Button>
+        <TextBox Grid.Column="5" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Benutzername eingeben /Default: root" Text="{Binding Username}" Margin="0,5" />
+        <Label Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2">Password:</Label>
+        <TextBox Grid.Column="7" Grid.Row="2" BorderThickness="2" VerticalAlignment="Center" ToolTip="Passwort eingeben /Default: root" Text="{Binding Passwort}" Grid.ColumnSpan="1" Margin="0,5" />
+        <Button Grid.Column="10" Grid.Row="2" ToolTip="Datenbank laden" Command="{Binding CmdLoad}">Load</Button>
+        <Button Grid.Column="10" Grid.Row="4" ToolTip="Datensatz bestätigen" Command="{Binding CmdConfirm}">Confirm</Button>
 
-        <Button Grid.Column="9" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Add Log</Button>
-        <Button Grid.Column="9" Grid.Row="8" ToolTip="Dublikate check" Command="{Binding CmdDublicateCheck}">Find Duplicates</Button>
+        <Button Grid.Column="10" Grid.Row="6" ToolTip="Datensätze laden" Command="{Binding CmdAddLog}">Add Log</Button>
+        <Button Grid.Column="10" Grid.Row="8" ToolTip="Dublikate check" Command="{Binding CmdDublicateCheck}">Find Duplicates</Button>
 
         <ListView
             Name="LogEntriesGrid"
             Grid.Row="4"
             Grid.Column="1"
-            Grid.ColumnSpan="7"
-            Grid.RowSpan="6"
+            Grid.ColumnSpan="8"
+            Grid.RowSpan="5"
             HorizontalContentAlignment="Stretch"
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding LogEntries}"
@@ -66,11 +67,11 @@
             <ListView.View>
                 <GridView x:Name="logEntryGrids">
                     <GridViewColumn
-                        Width="20"
+                        Width="50"
                         DisplayMemberBinding="{Binding Id}"
                         Header="Id" />
                     <GridViewColumn
-                        Width="40"
+                        Width="100"
                         DisplayMemberBinding="{Binding Timestamp}"
                         Header="Time" />
                     <GridViewColumn
@@ -90,7 +91,7 @@
                         DisplayMemberBinding="{Binding Severity}"
                         Header="Severity" />
                     <GridViewColumn
-                        Width="100"
+                        Width="200"
                         DisplayMemberBinding="{Binding Message}"
                         Header="Message" />
                 </GridView>
