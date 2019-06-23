@@ -29,6 +29,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             CmdConfirm = new DelegateCommand(OnCmdConfirm);
             CmdAddLog = new DelegateCommand(OnCmdAddLog);
             CmdDublicateCheck = new DelegateCommand(OnCmdDublicateCheck);
+            CmdHierarchie = new DelegateCommand(OnCmdHierarchie);
         }
 
         public string Servername
@@ -63,6 +64,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         public DelegateCommand CmdConfirm { get; }
         public DelegateCommand CmdAddLog { get; }
         public DelegateCommand CmdDublicateCheck { get; }
+        public DelegateCommand CmdHierarchie { get; }
         private DatenLoggerRepository DatenLoggerRepository { get; set; }
 
         public List<IEntity> LogEntries
@@ -112,13 +114,25 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             NavigateToLogAddView();
         }
 
+        private void OnCmdHierarchie()
+        {
+            NavigateToHierarchieView();
+        }
         public void NavigateToLogAddView()
         {
             var mainUserControlVM = MainUserControlModelView.GetInstance();
             mainUserControlVM.DatenloggerAddVisibility = Visibility.Visible;
             mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
+            mainUserControlVM.DatenloggerHierarchieVisibility = Visibility.Collapsed;
         }
 
+        public void NavigateToHierarchieView()
+        {
+            var mainUserControlVM = MainUserControlModelView.GetInstance();
+            mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed;
+            mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
+            mainUserControlVM.DatenloggerHierarchieVisibility = Visibility.Visible;
+        }
         private void OnCmdDublicateCheck()
         {
             var dupChecker = new DuplicateChecker();
@@ -128,6 +142,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             foreach (var entity in dupList) temp.Add(entity as IEntity);
             LogEntries = temp;
         }
+
+
 
         public void RefreshDatenLogEntries()
         {

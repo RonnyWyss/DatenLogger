@@ -84,6 +84,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -105,6 +106,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ModelView\DatenLoggerHierarchieModelView.cs" />
     <Compile Include="Model\IDevice.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\ILocation.cs" />
@@ -135,10 +137,17 @@
     <Compile Include="View\DatenLoggerAddView.xaml.cs">
       <DependentUpon>DatenLoggerAddView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DatenLoggerHierarchieView.xaml.cs">
+      <DependentUpon>DatenLoggerHierarchieView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DatenLoggerView.xaml.cs">
       <DependentUpon>DatenLoggerView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\DatenLoggerAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DatenLoggerHierarchieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

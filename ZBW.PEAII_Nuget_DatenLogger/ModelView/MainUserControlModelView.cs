@@ -8,12 +8,19 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         //Singleton
         private static MainUserControlModelView instance;
         private Visibility _datenloggeraddView = Visibility.Collapsed;
+        private Visibility _datenloggerhierarchieView = Visibility.Collapsed;
         private Visibility _datenloggerView = Visibility.Visible;
 
         public Visibility DatenloggerAddVisibility
         {
             get => _datenloggeraddView;
             set => SetProperty(ref _datenloggeraddView, value);
+        }
+
+        public Visibility DatenloggerHierarchieVisibility
+        {
+            get => _datenloggerhierarchieView;
+            set => SetProperty(ref _datenloggerhierarchieView, value);
         }
 
         public Visibility DatenloggerVisibility

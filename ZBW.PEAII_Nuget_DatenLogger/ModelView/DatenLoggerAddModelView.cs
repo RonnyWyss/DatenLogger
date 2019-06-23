@@ -43,7 +43,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         public DatenLoggerRepository DatenLoggerRepository { get; set; }
 
-        public 
+      
 
 
         public static DatenLoggerAddModelView GetAddLogEntryModelView { get; private set; }
@@ -187,7 +187,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             }
         }
 
- private void OnCmdCancel()
+        private void OnCmdCancel()
         {
          NavigateToDatenloggerView();
         }
@@ -196,6 +196,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             var mainUserControlVM = MainUserControlModelView.GetInstance();
             mainUserControlVM.DatenloggerAddVisibility = Visibility.Collapsed;
             mainUserControlVM.DatenloggerVisibility = Visibility.Visible;
+            mainUserControlVM.DatenloggerHierarchieVisibility = Visibility.Collapsed;
         }
     }
 }
