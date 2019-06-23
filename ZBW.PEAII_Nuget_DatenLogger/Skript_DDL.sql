@@ -1,5 +1,3 @@
--- Ronny's Datenbase Version 01.06.2019
-
 DROP DATABASE IF EXISTS inventarisierungsloesung;
 
 CREATE DATABASE IF NOT EXISTS Inventarisierungsloesung
@@ -44,9 +42,10 @@ FOREIGN KEY (kundenkonto_fk) REFERENCES Kundenkonto(kundenkonto_id) ON DELETE CA
 
 CREATE TABLE IF NOT EXISTS Location (
 location_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+parent_location INT UNSIGNED,
 address_fk INT UNSIGNED NOT NULL,
 designation VARCHAR(45) NOT NULL,
-building VARCHAR(45) NOT NULL,
+building INT UNSIGNED NOT NULL,
 room INT UNSIGNED NOT NULL,
 FOREIGN KEY (address_fk) REFERENCES Address(address_id)ON DELETE CASCADE
 );
@@ -245,14 +244,14 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE LogMessageAdd
 (
-	IN i_pod VARCHAR(1000), i_hostname VARCHAR(45), i_severity INT, i_message VARCHAR(1000), i_location VARCHAR(50)
+	IN i_pod VARCHAR(1000), i_hostname VARCHAR(45), i_severity INT, i_message VARCHAR(1000)
 )
 
 BEGIN
 
-	INSERT INTO v_logentries ( pod, timestamp, hostname, severity, message, location)
+	INSERT INTO v_logentries ( pod, timestamp, hostname, severity, message)
     VALUE
-    (i_pod, timestamp(now()), i_hostname, i_severity, i_message,i_location);
+    (i_pod, timestamp(now()), i_hostname, i_severity, i_message);
     
 END //
 DELIMITER ;
