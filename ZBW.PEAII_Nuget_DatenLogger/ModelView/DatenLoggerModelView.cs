@@ -6,6 +6,10 @@ using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.View;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.View.Impl;
 using IEntity = ZBW.PEAII_Nuget_DatenLogger.Model.IEntity;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
@@ -21,6 +25,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         private int _selectedIndex;
         private string _servername = Settings.Default.default_servername;
         private string _username = Settings.Default.default_user;
+        private string _connString;
 
         public DatenLoggerModelView()
         {
@@ -30,6 +35,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             CmdAddLog = new DelegateCommand(OnCmdAddLog);
             CmdDublicateCheck = new DelegateCommand(OnCmdDublicateCheck);
             CmdHierarchie = new DelegateCommand(OnCmdHierarchie);
+            LogEntryView = new LogEntryView();
+            LoggingRepository = new LoggingRepository();
+
         }
 
         public string Servername
@@ -66,7 +74,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         public DelegateCommand CmdDublicateCheck { get; }
         public DelegateCommand CmdHierarchie { get; }
         private DatenLoggerRepository DatenLoggerRepository { get; set; }
-
+        private ILogEntryView LogEntryView { get; }
+        private ILoggingRepository LoggingRepository { get; }
         public List<IEntity> LogEntries
         {
             get => _logEntries;
@@ -96,16 +105,20 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             else
             {
                 Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
-                DatenLoggerRepository = new DatenLoggerRepository();
-                LogEntries = DatenLoggerRepository.GetAllLogEntries();
-                DatenLoggerAddModelView.GetAddLogEntryModelView.FillComboboxen();
-                RefreshDatenLogEntries();
+               // DatenLoggerRepository = new DatenLoggerRepository();
+            //    LogEntries = DatenLoggerRepository.GetAllLogEntries();
+            //    DatenLoggerAddModelView.GetAddLogEntryModelView.FillComboboxen();
+              //  RefreshDatenLogEntries();
+
+              LogEntries = LogEntryView.GetAllLogEntries();
+
             }
         }
 
         private void OnCmdConfirm()
         {
-            DatenLoggerRepository.ClearLogEntry(SelectedEntity);
+            //    DatenLoggerRepository.ClearLogEntry(SelectedEntity);
+            LoggingRepository.ClearLogEntry(SelectedEntity);
             RefreshDatenLogEntries();
         }
 
@@ -118,6 +131,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         {
             NavigateToHierarchieView();
         }
+
         public void NavigateToLogAddView()
         {
             var mainUserControlVM = MainUserControlModelView.GetInstance();
@@ -133,6 +147,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             mainUserControlVM.DatenloggerVisibility = Visibility.Collapsed;
             mainUserControlVM.DatenloggerHierarchieVisibility = Visibility.Visible;
         }
+
         private void OnCmdDublicateCheck()
         {
             var dupChecker = new DuplicateChecker();
@@ -144,10 +159,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         }
 
 
-
         public void RefreshDatenLogEntries()
         {
-            LogEntries = DatenLoggerRepository.GetAllLogEntries();
+         //   LogEntries = DatenLoggerRepository.GetAllLogEntries();
         }
     }
 }

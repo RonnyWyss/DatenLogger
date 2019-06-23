@@ -11,3 +11,4 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.csproj.CopyComplete
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.dll
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.pdb
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger.UnitTest\obj\Debug\ZBW.PEAII_Nuget_DatenLogger.UnitTest.csprojAssemblyReference.cache

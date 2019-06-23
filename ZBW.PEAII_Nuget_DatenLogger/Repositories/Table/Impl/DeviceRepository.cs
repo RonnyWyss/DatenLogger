@@ -6,7 +6,7 @@ using ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
 {
-    public class DeviceRepository : RepositoryBase<IDevice>, IDeviceRepository
+    public class DeviceRepository : MySqlRepositoryBase<IDevice>, IDeviceRepository
     {
         public override string TableName => "Device";
 

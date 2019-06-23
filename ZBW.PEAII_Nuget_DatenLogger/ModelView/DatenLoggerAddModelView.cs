@@ -43,8 +43,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         public DatenLoggerRepository DatenLoggerRepository { get; set; }
 
-      
-
 
         public static DatenLoggerAddModelView GetAddLogEntryModelView { get; private set; }
 
@@ -140,17 +138,17 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         private void SetDatenLoggerRepository()
         {
-            var datenloggerRepositoring = new DatenLoggerRepository(Settings.Default.Connectionstring);
-            DatenLoggerRepository = datenloggerRepositoring;
+          //  var datenloggerRepositoring = new DatenLoggerRepository(Settings.Default.Connectionstring);
+         //   DatenLoggerRepository = datenloggerRepositoring;
         }
 
         public void FillComboboxen()
         {
             SetDatenLoggerRepository();
-            DeviceIdItems = DatenLoggerRepository.GetAllDeviceIds();
-            HostnameItems = DatenLoggerRepository.GetAllHostname();
-            LocationItems = DatenLoggerRepository.GetAllLocation();
-            SeverityItems = DatenLoggerRepository.GetAllSeverity();
+            //DeviceIdItems = DatenLoggerRepository.GetAllDeviceIds();
+            //HostnameItems = DatenLoggerRepository.GetAllHostname();
+            //LocationItems = DatenLoggerRepository.GetAllLocation();
+            //SeverityItems = DatenLoggerRepository.GetAllSeverity();
         }
 
         private void OnCmdSave()
@@ -177,10 +175,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             }
             else
             {
-
-                IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem, SelectedLocationItem);
+                IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem);
                 entity.DeviceId = SelectedDeviceIdItem;
-                DatenLoggerRepository.AddLogEntry(entity);
+               // DatenLoggerRepository.AddLogEntry(entity);
 
 
                 NavigateToDatenloggerView();
@@ -189,8 +186,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         private void OnCmdCancel()
         {
-         NavigateToDatenloggerView();
+            NavigateToDatenloggerView();
         }
+
         public void NavigateToDatenloggerView()
         {
             var mainUserControlVM = MainUserControlModelView.GetInstance();

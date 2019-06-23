@@ -1,12 +1,13 @@
 ﻿<UserControl x:Class="ZBW.PEAII_Nuget_DatenLogger.View.DatenLoggerHierarchieView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.View"
              xmlns:model="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.Model"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:modelView="clr-namespace:ZBW.PEAII_Nuget_DatenLogger.ModelView"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance modelView:DatenLoggerHierarchieModelView}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
@@ -57,5 +58,5 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-      </Grid>
+    </Grid>
 </UserControl>

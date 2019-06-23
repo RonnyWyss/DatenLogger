@@ -1,6 +1,12 @@
-﻿namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table
+﻿using System.Collections.Generic;
+using ZBW.PEAII_Nuget_DatenLogger.Model;
+
+namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table
 {
-    internal interface ILocationRepository
-    {
-    }
+   public interface ILocationRepository
+   {
+       List<ILocation> GetAllLocation();
+       List<ILocation> GetLocationsHierarchie();
+       void SetConnectionString(string connString);
+   }
 }

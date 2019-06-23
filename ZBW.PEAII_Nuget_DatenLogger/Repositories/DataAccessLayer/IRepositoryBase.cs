@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
 {
@@ -83,5 +85,23 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         /// </summary>
         /// <returns></returns>
         long Count();
+
+
+        /// <summary>
+        ///     Hier wird ein Store Procedure ausgeführt. Ess muss eine Liste von Input Keys mitgegeben werden, sowie dazugehörigen
+        ///     Parameter.
+        /// </summary>
+        /// <param name="procedureName">
+        ///     Name des Store Procedure
+        /// </param>
+        /// <param name="mySqlParameters">
+        ///     Input Parameter-Werte für das Store Procedure
+        /// </param>
+        /// <param name="dbTypes">
+        ///     Liste von Dbtypes von den Paramter Werten
+        /// </param>
+        void ExecuteStoreProcedur(string procedureName, List<MySqlParameter> mySqlParameters, List<DbType> dbTypes);
+
+    
     }
 }

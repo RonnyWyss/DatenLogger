@@ -129,6 +129,8 @@
     <Compile Include="00_NotImpl\SeverityLevelComboBoxItems.cs" />
     <Compile Include="Repositories\Table\Impl\DeviceRepository.cs" />
     <Compile Include="Repositories\Table\IDeviceRepository.cs" />
+    <Compile Include="Repositories\View\ILogEntryView.cs" />
+    <Compile Include="Repositories\View\Impl\LogEntryView.cs" />
     <Compile Include="Services\IGuidGeneratorService.cs" />
     <Compile Include="Services\Impl\GuidGeneratorService.cs" />
     <Compile Include="ModelView\DatenLoggerAddModelView.cs" />
