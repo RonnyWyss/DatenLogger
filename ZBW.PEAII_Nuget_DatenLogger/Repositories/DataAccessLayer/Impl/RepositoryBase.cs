@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Windows;
-using MySql.Data.MySqlClient;
+﻿using System.Data;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
@@ -23,7 +18,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
         protected string ConnectionString { get; }
 
         protected IDbConnection MySqlConnection { get; set; }
-
-       
     }
 }

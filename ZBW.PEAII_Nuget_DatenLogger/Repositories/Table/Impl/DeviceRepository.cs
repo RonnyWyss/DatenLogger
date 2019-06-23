@@ -41,7 +41,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
             entity.Hostname = r.GetString(1);
             entity.Ip_Adress = r.GetString(2);
             entity.Categorie = r.GetString(3);
-            entity.Fk_LocationId = r.GetInt32(4);
+            //  entity.Fk_LocationId = r.GetInt32(4);
 
             return entity;
         }

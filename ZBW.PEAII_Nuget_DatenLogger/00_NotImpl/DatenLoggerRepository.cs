@@ -1,12 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using MySql.Data.MySqlClient;
-using ZBW.PEAII_Nuget_DatenLogger.Model;
-using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
-using ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl;
-
-namespace ZBW.PEAII_Nuget_DatenLogger.Repositories
+﻿namespace ZBW.PEAII_Nuget_DatenLogger.Repositories
 {
     public class DatenLoggerRepository
     {

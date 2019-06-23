@@ -16,6 +16,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 {
     internal class DatenLoggerModelView : BindableBase
     {
+        private string _connString;
         private UserControl _content;
         private string _database = Settings.Default.default_datenbasename;
         private List<IEntity> _logEntries;
@@ -25,7 +26,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         private int _selectedIndex;
         private string _servername = Settings.Default.default_servername;
         private string _username = Settings.Default.default_user;
-        private string _connString;
 
         public DatenLoggerModelView()
         {
@@ -37,7 +37,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             CmdHierarchie = new DelegateCommand(OnCmdHierarchie);
             LogEntryView = new LogEntryView();
             LoggingRepository = new LoggingRepository();
-
         }
 
         public string Servername
@@ -76,6 +75,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         private DatenLoggerRepository DatenLoggerRepository { get; set; }
         private ILogEntryView LogEntryView { get; }
         private ILoggingRepository LoggingRepository { get; }
+
         public List<IEntity> LogEntries
         {
             get => _logEntries;
@@ -105,30 +105,26 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             else
             {
                 Settings.Default.Connectionstring = "Server=" + _servername + ";Database=" + _database + ";Uid=" + _username + ";Pwd=" + _passwort;
-               // DatenLoggerRepository = new DatenLoggerRepository();
-            //    LogEntries = DatenLoggerRepository.GetAllLogEntries();
-            //    DatenLoggerAddModelView.GetAddLogEntryModelView.FillComboboxen();
-              //  RefreshDatenLogEntries();
 
-              LogEntries = LogEntryView.GetAllLogEntries();
-
+                LogEntries = LogEntryView.GetAllLogEntries();
             }
         }
 
         private void OnCmdConfirm()
         {
-            //    DatenLoggerRepository.ClearLogEntry(SelectedEntity);
             LoggingRepository.ClearLogEntry(SelectedEntity);
             RefreshDatenLogEntries();
         }
 
         private void OnCmdAddLog()
         {
+            DatenLoggerAddModelView.GetAddLogEntryModelView.FillComboboxen();
             NavigateToLogAddView();
         }
 
         private void OnCmdHierarchie()
         {
+            DatenLoggerHierarchieModelView.GetInstance().LoadLocationTree();
             NavigateToHierarchieView();
         }
 
@@ -161,7 +157,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         public void RefreshDatenLogEntries()
         {
-         //   LogEntries = DatenLoggerRepository.GetAllLogEntries();
+            //LogEntries = DatenLoggerRepository.GetAllLogEntries();
         }
     }
 }

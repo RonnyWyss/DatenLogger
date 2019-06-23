@@ -11,6 +11,27 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
     {
         public override string TableName => "Logging";
 
+        public void AddLogEntry(IEntity entity)
+        {
+            var inputKeys = new List<MySqlParameter>
+            {
+                new MySqlParameter("in_deviceId", entity.DeviceId),
+                new MySqlParameter("in_hostname", entity.Hostname),
+                new MySqlParameter("in_serverity", entity.Severity),
+                new MySqlParameter("in_message", entity.Message)
+            };
+            var dbTypes = new List<DbType> {DbType.Int32, DbType.String, DbType.Int32, DbType.String};
+            ExecuteStoreProcedur("logMessageAdd", inputKeys, dbTypes);
+        }
+
+        public void ClearLogEntry(IEntity entity)
+        {
+            var inputKeys = new List<MySqlParameter> {new MySqlParameter("id", entity.Id)};
+
+            var dbTypes = new List<DbType> {DbType.Int32};
+            ExecuteStoreProcedur("LogClear", inputKeys, dbTypes);
+        }
+
         protected override ILogging CreateEntity(IDataReader r)
         {
             var entity = new Logging();
@@ -22,25 +43,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
 
             return entity;
         }
-        public void AddLogEntry(IEntity entity)
-        {
-            var inputKeys = new List<MySqlParameter>
-            {
-                new MySqlParameter("in_deviceId", entity.DeviceId),
-                new MySqlParameter("in_hostname", entity.Hostname),
-                new MySqlParameter("in_serverity", entity.Severity),
-                new MySqlParameter("in_message", entity.Message)
-            };
-            var dbTypes = new List<DbType> { DbType.Int32, DbType.String, DbType.Int32, DbType.String };
-            ExecuteStoreProcedur("logMessageAdd", inputKeys, dbTypes);
-        }
-        public void ClearLogEntry(IEntity entity)
-        {
-            var inputKeys = new List<MySqlParameter> { new MySqlParameter("id", entity.Id) };
-
-            var dbTypes = new List<DbType> { DbType.Int32 };
-            ExecuteStoreProcedur("LogClear", inputKeys, dbTypes);
-        }
-
     }
 }

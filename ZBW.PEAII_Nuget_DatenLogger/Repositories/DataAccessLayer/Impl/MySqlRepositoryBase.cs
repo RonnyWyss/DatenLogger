@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows;
-using DuplicateCheckerLib;
 using MySql.Data.MySqlClient;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
 
@@ -13,15 +11,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
     {
         private MySqlConnection _mySqlConnection;
 
-        public void SetConnectionString(string connString)
-        {
-            Settings.Default.Connectionstring = connString;
-        }
-        private string GetConnectionString()
-        {
-            return Settings.Default.Connectionstring;
-        }
-        protected abstract M CreateEntity(IDataReader r);
         protected IDbConnection MySqlConnection
         {
             get
@@ -33,44 +22,16 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
 
         public void Add(M entity)
         {
-            /*
-                       using (var conn = MySqlConnection)
-                       {
-                           conn.Open();
-                           var procedureName = "logMessageAdd";
-                           using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName))
-                           {
-                               var p1 = new MySqlParameter("i_pod", entity.DeviceId); //char(36)
-                               p1.Direction = ParameterDirection.Input;
-                               p1.DbType = DbType.String;
-                               var p2 = new MySqlParameter("i_hostname", entity.Hostname); //varchar(50)
-                               p2.Direction = ParameterDirection.Input;
-                               p2.DbType = DbType.String;
-                               var p3 = new MySqlParameter("i_severity", entity.Severity); //char(36)
-                               p3.Direction = ParameterDirection.Input;
-                               p3.DbType = DbType.Int32;
-                               var p4 = new MySqlParameter("i_message", entity.Message); //varchar(2000)
-                               p4.Direction = ParameterDirection.Input;
-                               p4.DbType = DbType.String;
-                               var p5 = new MySqlParameter("i_location", entity.Location); //varchar(2000)
-                               p5.Direction = ParameterDirection.Input;
-                               p5.DbType = DbType.String;
-           
-                               cmd.Parameters.Add(p1);
-                               cmd.Parameters.Add(p2);
-                               cmd.Parameters.Add(p3);
-                               cmd.Parameters.Add(p4);
-                               cmd.Parameters.Add(p5);
-                               cmd.ExecuteNonQuery();
-                           }
-                       }*/
             throw new NotImplementedException();
         }
+
         public long Count(string whereCondition, Dictionary<string, object> parameterValues)
         {
             throw new NotImplementedException();
         }
+
         public abstract string TableName { get; }
+
         public long Count()
         {
             using (var conn = MySqlConnection)
@@ -95,9 +56,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
             using (var conn = MySqlConnection)
             {
                 conn.Open();
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName ))
+                using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName))
                 {
-                    for (int i = 0; i < mySqlParameters.Count; i++)
+                    for (var i = 0; i < mySqlParameters.Count; i++)
                     {
                         var p = mySqlParameters[i];
                         p.Direction = ParameterDirection.Input;
@@ -106,7 +67,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
                     }
 
                     cmd.ExecuteNonQuery();
-
                 }
             }
         }
@@ -134,6 +94,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
 
             return allEntries;
         }
+
         public List<M> GetAll()
         {
             var allEntries = new List<M>();
@@ -193,67 +154,25 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
             throw new NotImplementedException();
         }
 
-        protected IDbCommand CreateCommand(IDbConnection myConnection, CommandType commandType, string coomandText)
+        public void SetConnectionString(string connString)
+        {
+            Settings.Default.Connectionstring = connString;
+        }
+
+        private string GetConnectionString()
+        {
+            return Settings.Default.Connectionstring;
+        }
+
+        protected abstract M CreateEntity(IDataReader r);
+
+        protected IDbCommand CreateCommand(IDbConnection myConnection, CommandType commandType, string commandText)
         {
             var command = MySqlConnection.CreateCommand();
             command.CommandType = commandType;
-            command.CommandText = coomandText;
+            command.CommandText = commandText;
 
             return command;
         }
-        //protected MySqlRepositoryBase()
-        //{
-        //    MySqlConnection = new MySqlConnection(Settings.Default.Connectionstring);
-        //}
-
-        //protected MySqlRepositoryBase(string connString)
-        //{
-        //    MySqlConnection = new MySqlConnection(connString);
-        //}
-
-        //protected IDbConnection MySqlConnection { get; set; }
-
-        ////protected IDbCommand CreateCommand(IDbConnection myConnection, CommandType commandType, string coomandText)
-        ////{
-        ////    var command = MySqlConnection.CreateCommand();
-        ////    command.CommandType = commandType;
-        ////    command.CommandText = coomandText;
-
-        ////    return command;
-        ////}
-
-        //protected void DeleteRow(string tablename, string rowName, int value)
-        //{
-        //    var statement = "DELETE FROM " + tablename + " WHERE " + rowName + " = " + value + ";";
-        //    ExecuteStatement(statement);
-        //}
-
-        //protected void UpdateRow(string tablename, string rowName, object newValue, int id, string idName)
-        //{
-        //    var statement = "UPDATE " + tablename + " SET " + rowName + " = " + newValue + " WHERE " + idName + " = " + id +
-        //                    ";";
-        //    ExecuteStatement(statement);
-        //}
-
-        //private void ExecuteStatement(string statement)
-        //{
-        //    try
-        //    {
-        //        MySqlConnection.Open();
-        //        var command = CreateCommand(MySqlConnection, CommandType.Text, statement);
-        //        command.ExecuteNonQuery();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        MessageBox.Show(e.Message);
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        MySqlConnection.Close();
-        //    }
-        //}
-
     }
 }

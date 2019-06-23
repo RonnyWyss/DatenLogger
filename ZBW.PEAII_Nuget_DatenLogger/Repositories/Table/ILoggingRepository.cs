@@ -2,7 +2,7 @@
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table
 {
-  interface ILoggingRepository
+    internal interface ILoggingRepository
     {
         void AddLogEntry(IEntity entity);
 

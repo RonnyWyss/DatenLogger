@@ -5,12 +5,16 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Model.Impl
 {
     internal class LogEntry : BindableBase, IEntity
     {
+        public LogEntry()
+        {
+        }
+
         public LogEntry(string hostename, string message, int severity)
         {
             Hostname = hostename;
             Message = message;
             Severity = severity;
-          //  Location = location;
+            //  Location = location;
             Timestamp = DateTime.Now;
         }
 

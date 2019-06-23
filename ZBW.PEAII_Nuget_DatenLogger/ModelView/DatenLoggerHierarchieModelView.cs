@@ -11,16 +11,18 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
     public class DatenLoggerHierarchieModelView : BindableBase
     {
         private List<ILocation> _locationlist;
-        // ILocationRepository locationRepository
+
         public DatenLoggerHierarchieModelView()
         {
             _locationlist = new List<ILocation>();
             CmdCancel = new DelegateCommand(OnCmdCancel);
-           // LocationRepository = locationRepository;
+            CmdLocation = new DelegateCommand(OnCmdLocation);
+            LocationRepository = new LocationRepository();
         }
 
 
         public DelegateCommand CmdCancel { get; }
+        public DelegateCommand CmdLocation { get; }
 
         public ILocationRepository LocationRepository { get; }
 
@@ -34,18 +36,19 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         public static DatenLoggerHierarchieModelView GetInstance()
         {
-            if (Instance == null)
-            {
-                ILocationRepository locationRepository = new LocationRepository();
-                //Instance = new DatenLoggerHierarchieModelView(locationRepository);
-            }
+            if (Instance == null) Instance = new DatenLoggerHierarchieModelView();
 
             return Instance;
         }
 
         public void LoadLocationTree()
         {
-            // Locations = LocationRepository.GetLocationsHierarchie();
+            Locations = LocationRepository.GetLocationsHierarchie();
+        }
+
+        private void OnCmdLocation()
+        {
+            LoadLocationTree();
         }
 
         private void OnCmdCancel()
@@ -60,7 +63,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             mainUserControlVM.DatenloggerVisibility = Visibility.Visible;
             mainUserControlVM.DatenloggerHierarchieVisibility = Visibility.Collapsed;
         }
-
-       
     }
 }

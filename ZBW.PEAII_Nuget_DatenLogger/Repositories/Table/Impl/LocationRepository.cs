@@ -10,18 +10,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
     {
         public override string TableName => "Location";
 
-        protected override ILocation CreateEntity(IDataReader r)
-        {
-            var entity = new Location();
-            entity.Id = r.GetInt32(0);
-            entity.Name = r.GetString(1);
-            entity.Fk_Address = r.GetInt32(2);
-            entity.Building = r.GetString(3);
-            entity.ParentId = r.GetInt32(4);
-
-            return entity;
-        }
-
         public List<ILocation> GetAllLocation()
         {
             return GetAll();
@@ -34,31 +22,38 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
             return hierarchieTree;
         }
 
+        protected override ILocation CreateEntity(IDataReader r)
+        {
+            var entity = new Location();
+            entity.Id = r.GetInt32(0);
+            entity.Name = r.GetString(4);
+            entity.address_fk = r.GetInt32(2);
+            entity.building = r.GetString(3);
+            entity.parent_location = r.GetInt32(1);
+            entity.room = r.GetInt32(5);
+
+
+            return entity;
+        }
+
         private List<ILocation> CreateHierarchieTree(List<ILocation> locations)
         {
             var nodes = new List<ILocation>();
             foreach (var item in locations)
-            {
-                if(item.ParentId ==0)
+                if (item.parent_location == 0)
                     nodes.Add(item);
                 else
-                {
                     CreateNode(nodes, item);
-                }
-
-              
-            }
             return nodes;
         }
 
         private void CreateNode(List<ILocation> nodes, ILocation child)
         {
             foreach (var node in nodes)
-                if (node.Id == child.ParentId)
+                if (node.Id == child.parent_location)
                     node.Childs.Add(child);
                 else
                     CreateNode(node.Childs, child);
         }
-
     }
 }

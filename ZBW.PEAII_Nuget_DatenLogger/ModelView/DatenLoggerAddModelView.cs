@@ -1,32 +1,35 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Windows;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
-using ZBW.PEAII_Nuget_DatenLogger.Properties;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.View;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.View.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 {
     internal class DatenLoggerAddModelView : BindableBase
     {
         private string _deviceId;
-        private ObservableCollection<int> _deviceIdItems;
+        private List<int> _deviceIdItems;
+        private List<int> _deviceIds;
         private string _hostname;
-        private ObservableCollection<string> _hostnameItems;
+        private List<string> _hostnameItems;
         private int _id;
         private string _location;
-        private ObservableCollection<string> _locationItems;
+        private List<ILocation> _locationItems;
         private string _message;
         private string _pod;
         private string _selectedDeviceIdItem;
         private string _selectedHostnameItem;
         private string _selectedLocationItem;
         private int _selectedServerityItem;
-        private ObservableCollection<int> _severityItems;
-
+        private List<int> _severityItems;
         private DateTime _timestamp;
 
 
@@ -35,6 +38,11 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             GetAddLogEntryModelView = this;
             CmdSave = new DelegateCommand(OnCmdSave);
             CmdCancel = new DelegateCommand(OnCmdCancel);
+            LogEntryView = new LogEntryView();
+            DeviceRepository = new DeviceRepository();
+            LoggingRepository = new LoggingRepository();
+            LocationRepository = new LocationRepository();
+            Entity = new LogEntry();
         }
 
         public DelegateCommand CmdSave { get; }
@@ -42,29 +50,32 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         public DelegateCommand CmdCancel { get; }
 
         public DatenLoggerRepository DatenLoggerRepository { get; set; }
-
-
+        private IDeviceRepository DeviceRepository { get; }
+        private ILocationRepository LocationRepository { get; }
+        private ILogEntryView LogEntryView { get; }
+        private IEntity Entity { get; }
+        private ILoggingRepository LoggingRepository { get; }
         public static DatenLoggerAddModelView GetAddLogEntryModelView { get; private set; }
 
-        public ObservableCollection<int> DeviceIdItems
+        public List<int> DeviceIdItems
         {
             get => _deviceIdItems;
             set => SetProperty(ref _deviceIdItems, value);
         }
 
-        public ObservableCollection<string> HostnameItems
+        public List<string> HostnameItems
         {
             get => _hostnameItems;
             set => SetProperty(ref _hostnameItems, value);
         }
 
-        public ObservableCollection<string> LocationItems
+        public List<ILocation> LocationItems
         {
             get => _locationItems;
             set => SetProperty(ref _locationItems, value);
         }
 
-        public ObservableCollection<int> SeverityItems
+        public List<int> SeverityItems
         {
             get => _severityItems;
             set => SetProperty(ref _severityItems, value);
@@ -80,6 +91,17 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         {
             get => _deviceId;
             set => SetProperty(ref _deviceId, value);
+        }
+
+        public List<int> DeviceIds
+        {
+            get
+            {
+                _deviceIds?.Sort();
+
+                return _deviceIds;
+            }
+            set => SetProperty(ref _deviceIds, value);
         }
 
         public string Location
@@ -138,8 +160,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         private void SetDatenLoggerRepository()
         {
-          //  var datenloggerRepositoring = new DatenLoggerRepository(Settings.Default.Connectionstring);
-         //   DatenLoggerRepository = datenloggerRepositoring;
+            //  var datenloggerRepositoring = new DatenLoggerRepository(Settings.Default.Connectionstring);
+            //   DatenLoggerRepository = datenloggerRepositoring;
         }
 
         public void FillComboboxen()
@@ -149,6 +171,9 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             //HostnameItems = DatenLoggerRepository.GetAllHostname();
             //LocationItems = DatenLoggerRepository.GetAllLocation();
             //SeverityItems = DatenLoggerRepository.GetAllSeverity();
+            DeviceIdItems = DeviceRepository.GetDeviceIds();
+            HostnameItems = DeviceRepository.GetDeviceHostname();
+            LocationItems = LocationRepository.GetAllLocation();
         }
 
         private void OnCmdSave()
@@ -161,10 +186,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             {
                 MessageBox.Show("Schreiben Sie eine Nachricht");
             }
-            else if (SelectedSeverityItem == 0)
-            {
-                MessageBox.Show("Wählen Sie eine Dringlichkeitsstufe");
-            }
+            //else if (SelectedSeverityItem == 0)
+            //{
+            //    MessageBox.Show("Wählen Sie eine Dringlichkeitsstufe");
+            //}
             else if (SelectedLocationItem == null)
             {
                 MessageBox.Show("Wählen Sie den Ort aus");
@@ -177,9 +202,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             {
                 IEntity entity = new LogEntry(SelectedHostnameItem, Message, SelectedSeverityItem);
                 entity.DeviceId = SelectedDeviceIdItem;
-               // DatenLoggerRepository.AddLogEntry(entity);
-
-
+                LoggingRepository.AddLogEntry(entity);
                 NavigateToDatenloggerView();
             }
         }

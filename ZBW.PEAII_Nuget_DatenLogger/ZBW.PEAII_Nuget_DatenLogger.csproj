@@ -115,7 +115,7 @@
     <Compile Include="Model\ILogging.cs" />
     <Compile Include="Model\Impl\Logging.cs" />
     <Compile Include="Repositories\DataAccessLayer\IMySqlRepositoryBase.cs" />
-    <Compile Include="Repositories\DatenLoggerRepository.cs" />
+    <Compile Include="00_NotImpl\DatenLoggerRepository.cs" />
     <Compile Include="Model\Impl\Device.cs" />
     <Compile Include="Model\Impl\Location.cs" />
     <Compile Include="Model\Impl\LogEntry.cs" />

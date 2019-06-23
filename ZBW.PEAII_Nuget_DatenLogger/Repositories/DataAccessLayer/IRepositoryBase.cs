@@ -101,7 +101,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         ///     Liste von Dbtypes von den Paramter Werten
         /// </param>
         void ExecuteStoreProcedur(string procedureName, List<MySqlParameter> mySqlParameters, List<DbType> dbTypes);
-
-    
     }
 }
