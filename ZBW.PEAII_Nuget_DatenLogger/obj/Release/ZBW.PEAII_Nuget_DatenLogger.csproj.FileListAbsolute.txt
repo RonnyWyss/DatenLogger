@@ -33,3 +33,9 @@ C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\ZBW.PE
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\ZBW.PEAII_Nuget_DatenLogger.csproj.CopyComplete
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\ZBW.PEAII_Nuget_DatenLogger.exe
 C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\ZBW.PEAII_Nuget_DatenLogger.pdb
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\ZBW.PEAII_Nuget_DatenLogger.csprojAssemblyReference.cache
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\View\DatenLoggerHierarchieView.g.cs
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\obj\Release\View\DatenLoggerHierarchieView.baml
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\linq2db.dll
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\linq2db.pdb
+C:\C#\ZBW.PEAII_Nuget_DatenLogger\ZBW.PEAII_Nuget_DatenLogger\bin\Release\linq2db.xml

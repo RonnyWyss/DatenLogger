@@ -5,11 +5,9 @@ using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
-using ZBW.PEAII_Nuget_DatenLogger.Repositories;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.View;
-using ZBW.PEAII_Nuget_DatenLogger.Repositories.View.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 {
@@ -38,7 +36,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
             GetAddLogEntryModelView = this;
             CmdSave = new DelegateCommand(OnCmdSave);
             CmdCancel = new DelegateCommand(OnCmdCancel);
-            LogEntryView = new LogEntryView();
+            //LogEntryView = new LogEntryView();
             DeviceRepository = new DeviceRepository();
             LoggingRepository = new LoggingRepository();
             LocationRepository = new LocationRepository();
@@ -49,7 +47,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
         public DelegateCommand CmdCancel { get; }
 
-        public DatenLoggerRepository DatenLoggerRepository { get; set; }
+
         private IDeviceRepository DeviceRepository { get; }
         private ILocationRepository LocationRepository { get; }
         private ILogEntryView LogEntryView { get; }

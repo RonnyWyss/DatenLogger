@@ -1,157 +1,112 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using MySql.Data.MySqlClient;
+using System.Linq.Expressions;
+using LinqToDB;
+using LinqToDB.Data;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.DbDTO.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
 {
-    public abstract class MySqlRepositoryBase<M> : IRepositoryBase<M>
+    public abstract class MySqlRepositoryBase<TDto, TId> : DataConnection, IMySqlRepositoryBase<TDto> where TDto : BaseDTO<TId>
     {
-        private MySqlConnection _mySqlConnection;
+        protected const string DatabaseName = "inventarisierungsloesung";
 
-        protected IDbConnection MySqlConnection
+        public MySqlRepositoryBase() : base(DatabaseName)
         {
-            get
+        }
+
+        public void Add(TDto entity)
+        {
+            using (var ctx = new DataContext(DatabaseName))
             {
-                if (_mySqlConnection == null) _mySqlConnection = new MySqlConnection(GetConnectionString());
-                return _mySqlConnection;
+                ctx.Insert(entity);
             }
         }
-
-        public void Add(M entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public long Count(string whereCondition, Dictionary<string, object> parameterValues)
-        {
-            throw new NotImplementedException();
-        }
-
-        public abstract string TableName { get; }
 
         public long Count()
         {
-            using (var conn = MySqlConnection)
-            {
-                using (var cmd = conn.CreateCommand())
-                {
-                    conn.Open();
-                    cmd.CommandText = $"select count(*) from {TableName}";
+            var count = GetAll().ToList().Count;
 
-                    return (long) cmd.ExecuteScalar();
-                }
+            return count;
+        }
+
+        public void Delete(TDto entity)
+        {
+            using (var ctx = new DataContext(DatabaseName))
+            {
+                var toDeleteEntry = GetAll(d => d.Id.Equals(entity.Id)).FirstOrDefault();
+                if (toDeleteEntry != null) ctx.Delete(toDeleteEntry);
             }
         }
 
-        public void Delete(M entity)
+        public void ExecuteStoreProcedur(string procedureName, DataParameter[] dataParameters)
         {
-            throw new NotImplementedException();
-        }
-
-        public void ExecuteStoreProcedur(string procedureName, List<MySqlParameter> mySqlParameters, List<DbType> dbTypes)
-        {
-            using (var conn = MySqlConnection)
+            using (var db = new DataConnection(DatabaseName))
             {
-                conn.Open();
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.StoredProcedure, procedureName))
-                {
-                    for (var i = 0; i < mySqlParameters.Count; i++)
-                    {
-                        var p = mySqlParameters[i];
-                        p.Direction = ParameterDirection.Input;
-                        p.DbType = dbTypes[i];
-                        cmd.Parameters.Add(p);
-                    }
-
-                    cmd.ExecuteNonQuery();
-                }
+                db.QueryProc<TDto>(procedureName, dataParameters);
             }
         }
 
-        public List<M> GetAll(string whereCondition, Dictionary<string, object> parameterValues)
+        public IQueryable<TDto> GetAll(Expression<Func<TDto, bool>> parameterValues)
         {
-            var allEntries = new List<M>();
-            using (var conn = MySqlConnection)
+            var allEntries = Enumerable.Empty<TDto>().AsQueryable();
+            using (var db = new DataContext(DatabaseName))
             {
-                conn.Open();
-
-                var statement = $"select * from{TableName} where {whereCondition}";
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
-                {
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        while (r.Read())
-                        {
-                            var entity = CreateEntity(r);
-                            allEntries.Add(entity);
-                        }
-                    }
-                }
+                allEntries = db.GetTable<TDto>().Where(parameterValues);
             }
 
             return allEntries;
         }
 
-        public List<M> GetAll()
+
+        public IQueryable<TDto> GetAll()
         {
-            var allEntries = new List<M>();
-            using (var conn = MySqlConnection)
+            using (var ctx = new DataContext(DatabaseName))
             {
-                conn.Open();
-
-                var statement = $"select * from {TableName}";
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
-                {
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        while (r.Read())
-                        {
-                            var entity = CreateEntity(r);
-                            allEntries.Add(entity);
-                        }
-                    }
-                }
+                var allEntries = ctx.GetTable<TDto>();
+                return allEntries;
             }
-
-            return allEntries;
         }
 
-        public M GetSingle<P>(P pkValue)
+
+        public TDto GetSingle<P>(P pkValue)
         {
-            using (var conn = MySqlConnection)
+            using (var ctx = new DataContext(DatabaseName))
             {
-                if (conn.State == ConnectionState.Closed) conn.Open();
+                var entry = ctx.GetTable<TDto>().FirstOrDefault(e => e.Id.Equals(pkValue));
 
-                var statement = $"select * from {TableName} where id = {pkValue}";
-                using (var cmd = CreateCommand(MySqlConnection, CommandType.Text, statement))
-                {
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        while (r.Read())
-                        {
-                            var entity = CreateEntity(r);
-
-                            return entity;
-                        }
-                    }
-                }
+                return entry;
             }
-
-            throw new EntryPointNotFoundException();
         }
 
 
-        public void Update(M entity)
+        public void Update(TDto entity)
         {
-            throw new NotImplementedException();
+            using (var ctx = new DataContext(DatabaseName))
+            {
+                ctx.Update(entity);
+            }
         }
 
-        public IQueryable<M> Query(string whereCondition, Dictionary<string, object> parameterValues)
+        public IQueryable<TDto> Query(Expression<Func<TDto, bool>> whereClause)
         {
-            throw new NotImplementedException();
+            using (var db = new DataContext(DatabaseName))
+            {
+                var entities = db.GetTable<TDto>().Where(whereClause);
+
+                return entities;
+            }
+        }
+
+        public long Count(Expression<Func<TDto, bool>> whereCondition)
+        {
+            using (var db = new DataContext(DatabaseName))
+            {
+                var entities = db.GetTable<TDto>().Where(whereCondition);
+
+                return entities.Count();
+            }
         }
 
         public void SetConnectionString(string connString)
@@ -164,15 +119,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl
             return Settings.Default.Connectionstring;
         }
 
-        protected abstract M CreateEntity(IDataReader r);
-
-        protected IDbCommand CreateCommand(IDbConnection myConnection, CommandType commandType, string commandText)
-        {
-            var command = MySqlConnection.CreateCommand();
-            command.CommandType = commandType;
-            command.CommandText = commandText;
-
-            return command;
-        }
-    }
+       }
 }

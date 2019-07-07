@@ -1,49 +1,44 @@
 ﻿using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.DbDTO.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
 {
-    public class DeviceRepository : MySqlRepositoryBase<IDevice>, IDeviceRepository
+    public class DeviceRepository : MySqlRepositoryBase<DeviceDTO, int>, IDeviceRepository
     {
-        public override string TableName => "Device";
-
         public List<IDevice> GetDevices()
         {
             var allDevice = GetAll();
-            return allDevice;
+            var devices = allDevice.Select(device => (IDevice) new Device
+            {
+                Categorie = device.Categorie,
+                Fk_LocationId = device.LocationIdFk,
+                Hostname = device.Hostname,
+                Id = device.Id,
+                Ip_Adress = device.Ip_Adress
+            }).ToList();
+
+            return devices;
         }
 
         public List<int> GetDeviceIds()
         {
-            var devices = GetDevices();
-            var ids = new List<int>();
-            foreach (var dev in devices) ids.Add(dev.Id);
+            var allDevice = GetAll();
+            var deviceIds = allDevice.Select(d => d.Id).ToList();
 
-            return ids;
+            return deviceIds;
         }
 
         public List<string> GetDeviceHostname()
         {
-            var devices = GetDevices();
-            var hostname = new List<string>();
-            foreach (var dev in devices) hostname.Add(dev.Hostname);
+            var allDevice = GetAll();
 
-            return hostname;
-        }
+            var deviceHostname = allDevice.Select(d => d.Hostname).ToList();
 
-        protected override IDevice CreateEntity(IDataReader r)
-        {
-            var entity = new Device();
-            entity.Id = r.GetInt32(0);
-            entity.Hostname = r.GetString(1);
-            entity.Ip_Adress = r.GetString(2);
-            entity.Categorie = r.GetString(3);
-            //  entity.Fk_LocationId = r.GetInt32(4);
-
-            return entity;
+            return deviceHostname;
         }
     }
 }

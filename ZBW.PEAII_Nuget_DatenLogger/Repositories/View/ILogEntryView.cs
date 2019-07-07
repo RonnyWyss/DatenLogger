@@ -6,7 +6,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.View
     public interface ILogEntryView
     {
         List<IEntity> GetAllLogEntries();
-
-        void SetConnectionString(string connString);
     }
 }

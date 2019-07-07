@@ -1,47 +1,29 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using MySql.Data.MySqlClient;
+﻿using LinqToDB.Data;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
-using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.DbDTO.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
 {
-    internal class LoggingRepository : MySqlRepositoryBase<ILogging>, ILoggingRepository
+    public class LoggingRepository : MySqlRepositoryBase<LoggingDTO, int>, ILoggingRepository
     {
-        public override string TableName => "Logging";
+        private const string LogClear = "LogClear";
+        private const string LogMessageAdd = "logMessageAdd";
 
-        public void AddLogEntry(IEntity entity)
+        public void AddLogEntry(IEntity entry)
         {
-            var inputKeys = new List<MySqlParameter>
-            {
-                new MySqlParameter("in_deviceId", entity.DeviceId),
-                new MySqlParameter("in_hostname", entity.Hostname),
-                new MySqlParameter("in_serverity", entity.Severity),
-                new MySqlParameter("in_message", entity.Message)
-            };
-            var dbTypes = new List<DbType> {DbType.Int32, DbType.String, DbType.Int32, DbType.String};
-            ExecuteStoreProcedur("logMessageAdd", inputKeys, dbTypes);
+            var dataParams = new DataParameter[4];
+            dataParams[0] = new DataParameter("in_deviceId", entry.DeviceId);
+            dataParams[1] = new DataParameter("in_hostname", entry.Hostname);
+            dataParams[2] = new DataParameter("in_serverity", entry.Severity);
+            dataParams[3] = new DataParameter("in_message", entry.Message);
+            ExecuteStoreProcedur(LogMessageAdd, dataParams);
         }
 
-        public void ClearLogEntry(IEntity entity)
+        public void ClearLogEntry(IEntity entry)
         {
-            var inputKeys = new List<MySqlParameter> {new MySqlParameter("id", entity.Id)};
-
-            var dbTypes = new List<DbType> {DbType.Int32};
-            ExecuteStoreProcedur("LogClear", inputKeys, dbTypes);
-        }
-
-        protected override ILogging CreateEntity(IDataReader r)
-        {
-            var entity = new Logging();
-            entity.Id = r.GetInt32(0);
-            entity.Name = r.GetString(1);
-            entity.Fk_Adress = r.GetInt32(2);
-            entity.Building = r.GetString(3);
-            entity.ParentId = r.GetInt32(4);
-
-            return entity;
+            var param = new DataParameter[1] {new DataParameter("id", entry.Id)};
+            ExecuteStoreProcedur(LogClear, param);
         }
     }
 }

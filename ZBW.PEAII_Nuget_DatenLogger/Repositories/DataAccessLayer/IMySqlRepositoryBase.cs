@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System;
 using System.Linq;
-using MySql.Data.MySqlClient;
+using System.Linq.Expressions;
+using LinqToDB.Data;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
 {
@@ -10,8 +10,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         /// <summary>
         ///     Gibt den Tabellennamen zurück, auf die sich das Repository bezieht
         /// </summary>
-        string TableName { get; }
-
+        //string TableName { get; }
         /// <summary>
         ///     Fügt das Model-Objekt zur Datenbank hinzu (Insert)
         /// </summary>
@@ -26,12 +25,8 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         ///     WhereBedingung als string
         ///     z.B. "NetPrice > @netPrice and Active = @active and Description like @desc
         /// </param>
-        /// <param name="parameterValues">
-        ///     Parameter-Werte für die Wherebedingung
-        ///     bspw: {{"netPrice", 10.5}, {"active", true}, {"desc", "Wolle%"}}
-        /// </param>
         /// <returns></returns>
-        long Count(string whereCondition, Dictionary<string, object> parameterValues);
+        long Count(Expression<Func<M, bool>> whereCondition);
 
         /// <summary>
         ///     Zählt alle Model-Objekte vom Typ M
@@ -52,13 +47,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         /// <param name="procedureName">
         ///     Name des Store Procedure
         /// </param>
-        /// <param name="mySqlParameters">
+        /// <param name="dataParameters">
         ///     Input Parameter-Werte für das Store Procedure
         /// </param>
-        /// <param name="dbTypes">
-        ///     Liste von Dbtypes von den Paramter Werten
-        /// </param>
-        void ExecuteStoreProcedur(string procedureName, List<MySqlParameter> mySqlParameters, List<DbType> dbTypes);
+        void ExecuteStoreProcedur(string procedureName, DataParameter[] dataParameters);
 
         /// <summary>
         ///     Gibt eine Liste von Model-Objekten vom Typ M zurück,
@@ -67,22 +59,18 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         ///     damit diese für PreparedStatements verwendet werden können.
         ///     (Verhinderung von SQL-Injection)
         /// </summary>
-        /// <param name="whereCondition">
-        ///     WhereBedingung als string
-        ///     z.B. "NetPrice > @netPrice and Active = @active and Description like @desc
-        /// </param>
         /// <param name="parameterValues">
         ///     Parameter-Werte für die Wherebedingung
         ///     bspw: {{"netPrice", 10.5}, {"active", true}, {"desc", "Wolle%"}}
         /// </param>
         /// <returns></returns>
-        List<M> GetAll(string whereCondition, Dictionary<string, object> parameterValues);
+        IQueryable<M> GetAll(Expression<Func<M, bool>> parameterValues);
 
         /// <summary>
         ///     Gibt eine Liste aller in der DB vorhandenen Model-Objekte vom Typ M zurück
         /// </summary>
         /// <returns></returns>
-        List<M> GetAll();
+        IQueryable<M> GetAll();
 
         /// <summary>
         ///     Liefert ein einzelnes Model-Objekt vom Typ M zurück,
@@ -93,7 +81,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer
         /// <returns>gefundenes Model-Objekt, ansonsten null</returns>
         M GetSingle<P>(P pkValue);
 
-        IQueryable<M> Query(string whereCondition, Dictionary<string, object> parameterValues);
+        IQueryable<M> Query(Expression<Func<M, bool>> whereClause);
 
         /// <summary>
         ///     Aktualisiert das Model-Objekt in der Datenbank hinzu (Update)

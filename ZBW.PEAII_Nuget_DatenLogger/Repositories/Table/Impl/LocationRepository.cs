@@ -1,46 +1,43 @@
 ﻿using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 using ZBW.PEAII_Nuget_DatenLogger.Model;
 using ZBW.PEAII_Nuget_DatenLogger.Model.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.DataAccessLayer.Impl;
+using ZBW.PEAII_Nuget_DatenLogger.Repositories.DbDTO.Impl;
 
 namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
 {
-    public class LocationRepository : MySqlRepositoryBase<ILocation>, ILocationRepository
+    public class LocationRepository : MySqlRepositoryBase<LocationDTO, int>, ILocationRepository
     {
-        public override string TableName => "Location";
+        //  public override string TableName => "Location";
 
         public List<ILocation> GetAllLocation()
         {
-            return GetAll();
+            var allLocation = GetAll();
+            var locations = allLocation.Select(location => (ILocation) new Location
+            {
+                Room = location.room,
+                Adress_fk = location.Adress_fk,
+                Id = location.Id,
+                Name = location.designation,
+                Parent_location = location.Parent_location
+            }).ToList();
+
+            return locations;
         }
 
         public List<ILocation> GetLocationsHierarchie()
         {
-            var allLocations = GetAll();
+            var allLocations = GetAllLocation();
             var hierarchieTree = CreateHierarchieTree(allLocations);
             return hierarchieTree;
-        }
-
-        protected override ILocation CreateEntity(IDataReader r)
-        {
-            var entity = new Location();
-            entity.Id = r.GetInt32(0);
-            entity.Name = r.GetString(4);
-            entity.address_fk = r.GetInt32(2);
-            entity.building = r.GetString(3);
-            entity.parent_location = r.GetInt32(1);
-            entity.room = r.GetInt32(5);
-
-
-            return entity;
         }
 
         private List<ILocation> CreateHierarchieTree(List<ILocation> locations)
         {
             var nodes = new List<ILocation>();
             foreach (var item in locations)
-                if (item.parent_location == 0)
+                if (item.Parent_location == 0)
                     nodes.Add(item);
                 else
                     CreateNode(nodes, item);
@@ -50,7 +47,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl
         private void CreateNode(List<ILocation> nodes, ILocation child)
         {
             foreach (var node in nodes)
-                if (node.Id == child.parent_location)
+                if (node.Id == child.Parent_location)
                     node.Childs.Add(child);
                 else
                     CreateNode(node.Childs, child);

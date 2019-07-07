@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using DuplicateCheckerLib;
 using Prism.Commands;
 using Prism.Mvvm;
 using ZBW.PEAII_Nuget_DatenLogger.Properties;
-using ZBW.PEAII_Nuget_DatenLogger.Repositories;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.Table.Impl;
 using ZBW.PEAII_Nuget_DatenLogger.Repositories.View;
@@ -16,14 +14,10 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 {
     internal class DatenLoggerModelView : BindableBase
     {
-        private string _connString;
-        private UserControl _content;
         private string _database = Settings.Default.default_datenbasename;
         private List<IEntity> _logEntries;
         private string _passwort;
-        private IEntity _selectedEntities;
         private IEntity _selectedEntity;
-        private int _selectedIndex;
         private string _servername = Settings.Default.default_servername;
         private string _username = Settings.Default.default_user;
 
@@ -72,7 +66,7 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         public DelegateCommand CmdAddLog { get; }
         public DelegateCommand CmdDublicateCheck { get; }
         public DelegateCommand CmdHierarchie { get; }
-        private DatenLoggerRepository DatenLoggerRepository { get; set; }
+
         private ILogEntryView LogEntryView { get; }
         private ILoggingRepository LoggingRepository { get; }
 
@@ -113,7 +107,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
         private void OnCmdConfirm()
         {
             LoggingRepository.ClearLogEntry(SelectedEntity);
-            RefreshDatenLogEntries();
         }
 
         private void OnCmdAddLog()
@@ -152,12 +145,6 @@ namespace ZBW.PEAII_Nuget_DatenLogger.ModelView
 
             foreach (var entity in dupList) temp.Add(entity as IEntity);
             LogEntries = temp;
-        }
-
-
-        public void RefreshDatenLogEntries()
-        {
-            //LogEntries = DatenLoggerRepository.GetAllLogEntries();
         }
     }
 }

@@ -7,6 +7,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table
     {
         List<ILocation> GetAllLocation();
         List<ILocation> GetLocationsHierarchie();
-        void SetConnectionString(string connString);
     }
 }

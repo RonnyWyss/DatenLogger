@@ -1,0 +1,7 @@
+1. Datei anpassen --> ZBW.PEAII_Nuget_DatenLogger.nuspec
+
+2. nuget pack
+
+3. Nuget push ZBW.PEAII_Nuget_DatenLogger.1.0.0.nupkg DERNUGETKEYXYZEINGEBEN -Source https://api.nuget.org/v3/index.json
+   Nuget push ZBW.PEAII_Nuget_DatenLogger.2.0.0.nupkg DERNUGETKEYXYZEINGEBEN -Source https://api.nuget.org/v3/index.json
+   Nuget push ZBW.PEAII_Nuget_DatenLogger.3.0.0.nupkg DERNUGETKEYXYZEINGEBEN -Source https://api.nuget.org/v3/index.json

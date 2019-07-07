@@ -7,7 +7,5 @@ namespace ZBW.PEAII_Nuget_DatenLogger.Repositories.Table
         void AddLogEntry(IEntity entity);
 
         void ClearLogEntry(IEntity entity);
-
-        void SetConnectionString(string connString);
     }
 }
